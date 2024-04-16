@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <td>홍길동</td>
+        <td>98</td>
+      </tr>
+      <tr>
+        <td>김철수</td>
+        <td>80</td>
+      </tr>
+    </table>
+    <!-- border는 속성! 이게 없으면 선이 없다. *td가 하나 빠지면 그 부분은 빈칸(선도 없는)이 된다. -->
+
+    <br /><br /><br />
+
+    <table border="1">
+      <tr>
+        <th>영화제목</th>
+        <th>연도</th>
+        <th>감독</th>
+        <th>평가</th>
+      </tr>
+      <tr>
+        <td>라이프 오브 파이</td>
+        <td>2013</td>
+        <td>이안</td>
+        <td>8.68</td>
+      </tr>
+      <tr>
+        <td>레미제라블</td>
+        <td>2012</td>
+        <td>톰후퍼</td>
+        <td>8.28</td>
+      </tr>
+      <tr>
+        <td>장고:분노의 추적자</td>
+        <td>2012</td>
+        <td>타란티노</td>
+        <td>8.29</td>
+      </tr>
+    </table>
+    <!-- tr은 무조건 있어야 한다. th는 제목(볼드체,중앙정렬), td는 본문// -->
+
+    <br /><br /><br />
+
+    <table border="1">
+      <tr>
+        <th>1열</th>
+        <th>2열</th>
+        <th>3열</th>
+      </tr>
+      <tr>
+        <td rowspan="2">1행1열</td>
+        <td>1행2열</td>
+        <td>1행3열</td>
+      </tr>
+      <tr>
+        <td>2행2열</td>
+        <td>2행3열</td>
+      </tr>
+      <tr>
+        <td colspan="3">3행1열</td>
+      </tr>
+    </table>
+    <!-- 행(세로)끼리 병합할 때는 rowspan, 열(가로)끼리 병합할 때는 colspan -->
+
+    <br /><br /><br />
+
+    <table border="1">
+      <tr>
+        <td>1행1열</td>
+        <td>1행2열</td>
+        <td>1행3열</td>
+      </tr>
+      <tr>
+        <td>2행1열</td>
+        <td rowspan="2" colspan="2">2행2열</td>
+      </tr>
+      <tr>
+        <td>3행1열</td>
+      </tr>
+      <tr>
+        <td>4행1열</td>
+        <td>4행2열</td>
+        <td>4행3열</td>
+      </tr>
+    </table>
+
+    <br /><br /><br />
+
+    <table border="1">
+      <caption>
+        &lt;최근에 본 영화들&gt;
+      </caption>
+      <tr>
+        <th>영화제목</th>
+        <th>연도</th>
+        <th>감독</th>
+        <th>평가</th>
+      </tr>
+      <tr>
+        <td>라이프 오브 파이</td>
+        <td>2013</td>
+        <td>이안</td>
+        <td>8.68</td>
+      </tr>
+      <tr>
+        <td>레미제라블</td>
+        <td>2012</td>
+        <td>톰후퍼</td>
+        <td>8.28</td>
+      </tr>
+      <tr>
+        <td>장고:분노의 추적자</td>
+        <td>2012</td>
+        <td>타란티노</td>
+        <td>8.29</td>
+      </tr>
+    </table>
+    <!-- caption은 table 안에 넣어줘야한다. 캡션은 어디다 작성하던 맨위에 작성된다. *틈새 <>(&lt;,&gt;)이용법 -->
+  </body>
+</html>
