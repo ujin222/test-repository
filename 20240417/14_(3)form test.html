@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>정유진 과제2</title>
+  </head>
+  <body>
+    <h1>회원가입</h1>
+    <form>
+      <fieldset>
+        <legend>필수 입력 사항</legend>
+        <strong>ID</strong>
+        <input type="text" />
+        <input type="button" value="중복 확인" /><br />
+        <strong>비밀번호</strong>
+        <input type="password" /><br />
+        <strong>비밀번호 확인</strong>
+        <input type="password" /><br />
+        <strong>email</strong>
+        <input type="email" required />
+        <select name="email">
+          <option value="직접입력" selected>직접입력</option>
+          <option value="naver.com">naver.com</option>
+          <option value="google.com">google.com</option>
+          <option value="daum.net">daum.net</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend>추가 정보</legend>
+        프로필 사진 <input type="file" accept="image/*" /><br /><br />
+        성별 : <label for="남자"></label>
+        <input type="radio" name="성별" id="남자" value="남자" />
+        남자<label for="여자"></label>
+        <input type="radio" name="성별" id="여자" value="여자" />
+        여자
+        <br /><br />
+        생년월일 : <input type="date" /> <br /><br />
+        취미 <br />
+        <label for="야구"></label>
+        <input type="checkbox" id="야구" name="취미" />야구
+        <label for="농구"></label>
+        <input type="checkbox" id="농구" name="취미" />농구
+        <label for="축구"></label>
+        <input type="checkbox" id="축구" name="취미" />축구<br />
+        <label for="공부"></label>
+        <input type="checkbox" id="공부" name="취미" />공부
+        <label for="음악감상"></label>
+        <input type="checkbox" id="음악감상" name="취미" />음악감상<br />
+        <label for="기타"></label>
+        <input type="checkbox" id="기타" name="취미" />기타
+        <input type="text" />
+        <br /><br />
+        자기소개
+        <br />
+        <textarea name="자기소개" rows="10" cols="100"></textarea>
+      </fieldset>
+      <br /><br />
+      <input type="submit" value="회원가입" />
+      <input type="reset" value="다시입력" />
+      <input type="button" value="이전으로" />
+    </form>
+  </body>
+</html>

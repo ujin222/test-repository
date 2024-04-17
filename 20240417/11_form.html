@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form</title>
+  </head>
+  <body>
+    <form name="input" action="./10_input.html" method="get">
+      사용자 아이디:
+      <input type="text" name="user" /><br />
+      이메일: <input type="email" required /><br />
+      전화번호:
+      <input type="tel" pattern="[0-9]{3}-[0-9]{3,4}-[0-9]{4}" required /><br />
+      <!-- required는 형식을 맞추지 않으면 페이지가 넘어가지 않게 하는 역할을 한다.
+           pattern은 형식을 만들어 주는 것이다. -->
+
+      <input type="reset" value="초기화" /><br /><br />
+
+      <input type="submit" value="제출" /><br /><br />
+      <!-- submit과 button의 차이는 작업 용도에 있다. submit의 경우, 제출을 눌렀을 때 상단의 action에서 설정해놓은 페이지로 응답해준다. -->
+
+      <input type="file" accept="image/*" /><br />
+      <!-- file 파일 선택 창을 만들어준다. accept에서 설정한 파일들만 불러올 수 있다.
+            image/jpeg 로 입력하면 해당 확장파일만 선택 할 수 있고, *을 넣으면 모든 파일 선택 가능하다.
+            한글 같은 파일 경우에는 .hwp 로 입력하면 된다.
+            파일을 업로드 할 경우 맨 위 <form> 안에 enctype="multipart/form-data" 를 넣어줘야 한다. -->
+
+      <input type="hidden" value="hiddenvalue" /><br />
+
+      <button onclick="alert('안녕하세요?')">눌러보세요!</button><br /><br />
+      <!-- 뒤에 입력한 '눌러보세요!'를 누르면 '안녕하세요?'라고 적힌 팝업창이 뜬다. -->
+
+      고객의 의견<br />
+      <textarea name="feedback" rows="5" cols="50"></textarea><br /><br />
+      <!-- taxtarea 는 infut 창보다 넓은 공간의 타이핑 공간이 생긴다.
+            rows는 아래공간, cols는 너비공간을 잰다. 마우스로 늘리고 줄일 수 있는데, 추후에 제어 가능하다. -->
+
+      <fieldset>
+        <legend>인적사항 입력</legend>
+        이름: <input type="text" /><br />
+        전화번호: <input type="text" /><br />
+        주소: <input type="text" /><br />
+      </fieldset>
+      <!-- fieldset 요소들을 그룹으로 묶어 표시해준다.
+            legend로 제목을 만들 수 있다. -->
+      <input />
+    </form>
+  </body>
+</html>
