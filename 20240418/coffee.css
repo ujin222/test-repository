@@ -1,0 +1,38 @@
+@font-face {
+  font-family: "WAGURITTF";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2403@1.0/WAGURITTF.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+/* 
+   글꼴
+    serif: 삐침이 있는 글꼴
+    sans-serif: 삐침이 없는 글꼴
+    monospace: 동일한 너비의 글꼴
+    cursive: 손으로 쓴 것 같은 글꼴
+    fantasy: 화려한 글꼴 (영어나 특수문자만 화려함)
+
+    눈누에서 직접 글꼴을 골라 따와서, font-famliy: 를 바꿔주면 적용이 된다.
+    --> 글꼴 지정은 여러개 할 수 있으며, 사용자가 가지고 있지 않은 글꼴을 사용하는 것에 대비하여 기본 글꼴도 꼭 넣어줘야 한다.
+*/
+p {
+  font-family: "WAGURITTF";
+  color: black;
+}
+span {
+  font-size: 2em;
+  color: red;
+}
+em {
+  font-size: 1.5em;
+  color: blue;
+}
+h1 {
+  border-bottom: 1px solid gray;
+  color: red;
+}
+body {
+  font-size: large;
+  background-color: white;
+}

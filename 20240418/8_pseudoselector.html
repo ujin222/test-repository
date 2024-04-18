@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>의사(가상) 선택자</title>
+  </head>
+  <style>
+    a:link {
+      color: white;
+      background-color: red;
+      text-decoration: underline;
+    }
+    /* 한번도 클릭하지 않았을 때 */
+    a:visited {
+      color: white;
+      background-color: pink;
+      text-decoration: none;
+    }
+    /* 1번 이상 클릭했을 때 */
+    a:hover {
+      color: red;
+      background-color: yellow;
+    }
+    /* 마우스를 올렸을 때 */
+    a:active {
+      color: brown;
+      background-color: green;
+    }
+    /* 마우스로 클릭할 때 */
+  </style>
+  <body>
+    <!-- 의사 선택자: 가상 선택자 라고도 하며,
+        HTML요소를 직접 선택하지 않고, 요소의 상태에 따라 선택하여 스타일을 적용할 때 사용한다. -->
+
+    <a href="http://www.netflix.com" title="넷플릭스 페이지로 이동합니다.">
+      눈물의 여왕 보러가기
+    </a>
+  </body>
+</html>

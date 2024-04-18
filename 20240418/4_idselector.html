@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>id selector</title>
+  </head>
+  <style>
+    p {
+      background-color: antiquewhite;
+      color: red;
+    }
+    #special {
+      color: blue;
+    }
+    /* id 선택자는 앞에 #을 넣는다. */
+  </style>
+  <body>
+    <p id="special">ID가 Special인 단락입니다.</p>
+    <p>ID가 없는 단락입니다.</p>
+  </body>
+</html>
+
+<!-- 스타일 적용 우선순위
+        1. important (999999999점)
+        2. inline style (1000점)
+        3. Id 선택자 (100점)
+        4. Class 선택자 (10점)
+        5. Tag(타입) 선택자 (1점)
+        6. *(전체) 선택자 (0점)
+-->
