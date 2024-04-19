@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>경계선</title>
+  </head>
+  <style>
+    p.width {
+      border-style: solid;
+      border-width: 10px 3px 10px 3px;
+      /* border-width: thick; */
+      /* border-width: medium; */
+      /* border-width: thin; */
+    }
+    p.radius {
+      width: 300px;
+      height: 300px;
+      border: 5px solid red;
+      border-radius: 50px;
+      /* border-radius: 50%; */
+      /* border-radius: 40px 20px 40px 20px / 20px 40px 20px 40px; */
+    }
+    div.shadow {
+      width: 300px;
+      height: 100px;
+      background-color: aqua;
+      box-shadow: 20px 10px 5px #666666;
+      /* box-shadow: x축 y축 블러 스프레드 컬러 inset(그림자가 안으로) */
+    }
+  </style>
+  <body>
+    <p style="border-style: none">none.</p>
+    <p style="border-style: dotted">dotted.</p>
+    <p style="border-style: dashed">dashed.</p>
+    <p style="border-style: solid">solid.</p>
+    <p style="border-style: double">double.</p>
+    <p style="border-style: groove">groove.</p>
+    <p style="border-style: ridge">ridge.</p>
+    <p style="border-style: inset">inset.</p>
+    <p style="border-style: outset">outset.</p>
+
+    <p class="width">border-width 확인</p>
+
+    <p class="radius">border-radius 확인</p>
+
+    <div class="shadow">shadow 확인</div>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>짝수행 홀수행</title>
+  </head>
+  <style>
+    #list td,
+    #list th {
+      border: 1px dotted gray;
+      text-align: center;
+    }
+    /* #list th {
+      color: white;
+      background-color: blue;
+    }
+    #list tr.alt td {
+      background-color: yellow;
+    } */
+    tr:nth-child(odd) {
+      background-color: yellow;
+    }
+    /* 짝수,홀수번 테이블만 색칠하고 싶을 때, (2n, 2n + 1) 등의 산식 말고 키워드(even,odd)가 들어가도 됨 */
+    tr:first-child {
+      color: white;
+      background-color: blue;
+    }
+    /* 첫번째 테이블만 색칠하는 방법, last로 적으면 맨 마지막 테이블만 색칠된다. */
+    /* tr:not(:first-child) {
+      background-color: yellow;
+    } */
+    /* 첫번째(마지막) 테이블 제외하고 모두 색칠하는 방법이다. */
+  </style>
+  <body>
+    <table id="list">
+      <tr>
+        <th>이름</th>
+        <th>이메일</th>
+      </tr>
+      <tr>
+        <td>김철수</td>
+        <td>chul@gmail.com</td>
+      </tr>
+      <tr class="alt">
+        <td>김영희</td>
+        <td>young@gmail.com</td>
+      </tr>
+      <tr>
+        <td>홍길동</td>
+        <td>hong@gmail.com</td>
+      </tr>
+      <tr class="alt">
+        <td>김수진</td>
+        <td>sujin@gmail.com</td>
+      </tr>
+      <tr>
+        <td>정유진</td>
+        <td>hong@gmail.com</td>
+      </tr>
+      <tr>
+        <td>오나현</td>
+        <td>hong@gmail.com</td>
+      </tr>
+      <tr>
+        <td>지윤영</td>
+        <td>hong@gmail.com</td>
+      </tr>
+    </table>
+  </body>
+</html>

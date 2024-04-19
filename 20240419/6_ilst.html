@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>list stlye</title>
+  </head>
+  <style>
+    ul {
+      border-top: 1px solid magenta;
+      border-bottom: 1px solid magenta;
+      /* list-style-type: disc; */
+      /* list-style-type: circle; */
+      /* list-style-type: armenian; */
+      list-style-type: none;
+      padding: 10px 0;
+      /* 앞 빈 공간이 날라감 */
+      /* list-style-image: url(../resources/img/check.png); */
+      text-align: center;
+    }
+    ul li {
+      display: inline;
+      /* 리스트가 한 줄로 쭉 이어짐 */
+      text-transform: uppercase;
+      padding: 0 10px;
+      letter-spacing: 2px;
+    }
+    ul li a {
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <body>
+    <!-- <ul>
+      <li>
+        <img src="../resources/img/check.png" width="16" height="16" />
+        아메리카노
+      </li>
+      <li>아이스티</li>
+      <li>아샷추</li>
+    </ul> -->
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contant</a></li>
+    </ul>
+  </body>
+</html>
