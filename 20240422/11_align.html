@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flex align</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    ul {
+      display: flex;
+      list-style-type: none;
+      border: 5px solid magenta;
+      padding: 0;
+      height: 500px;
+      /* flex-wrap: wrap;
+      align-content: baseline;
+      /* align-contant
+         flex-wrap: wrap이 두 줄일때 유용히 쓸 수 있다. */
+      justify-content: space-evenly;
+      /* align-items: stretch; */
+      /* align-items: flex-start; */
+      /* align-items: flex-end; */
+      align-items: center;
+      /* align-items (교차축 중심)
+         stretch: 교차축 길이에 맞춰 늘어남
+         flex-start: 시작점부터 끝점까지 향해 배치
+         flex-end: 끝점부터 시작점까지 향해 배치
+         center: 중심부에 배치 */
+    }
+    li {
+      border: 2px solid gray;
+      background-color: pink;
+    }
+    #li1 {
+      align-self: flex-start;
+    }
+    #li2 {
+      align-self: flex-end;
+    }
+    /* align-self
+        id 를 설정해준 뒤 align-self 로 각각 다르게 정렬할 수 있다. */
+  </style>
+  <body>
+    <ul>
+      <li id="li1">강아지</li>
+      <li id="li2">고양이</li>
+      <li id="li3">다람쥐</li>
+      <li id="li4">호랑이</li>
+      <li id="li5">코끼리</li>
+
+      <!-- align-contant 확인용 -->
+    </ul>
+  </body>
+</html>

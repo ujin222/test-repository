@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flex test 2</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    ul {
+      border: 3px solid red;
+      border-radius: 5px;
+      list-style-type: none;
+      height: 300px;
+      padding: 1px;
+      display: flex;
+      flex-direction: column;
+      font-size: 48px;
+    }
+    li {
+      border: 1px solid black;
+      border-radius: 3px;
+      background-color: antiquewhite;
+      height: 85px;
+      width: 600px;
+      text-align: center;
+    }
+    #li2 {
+      align-self: center;
+    }
+    #li3 {
+      align-self: flex-end;
+    }
+  </style>
+  <body>
+    <h2>2. 아래와 같이 만들어 보세요.</h2>
+    <ul>
+      <li id="li1">1</li>
+      <li id="li2">2</li>
+      <li id="li3">3</li>
+    </ul>
+  </body>
+</html>

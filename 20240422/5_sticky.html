@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sticky</title>
+  </head>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      margin: 50px;
+      display: inline-block;
+    }
+    #one {
+      background-color: aqua;
+      position: sticky;
+      top: 0px;
+    }
+    /* sticky: 지정한 스크롤 위치에 도달하기 전까지는 static 처럼 행동하다가,
+     뷰포트 기준으로 정해놓은 오프셋에 닿으면 fixed 처럼 고정된다.
+      오프셋(left, right, top, bottum 중) 하나를 필수적으로 위치 값을 정해줘야 한다. */
+    #two {
+      background-color: pink;
+      position: static;
+    }
+    #three {
+      background-color: plum;
+      position: fixed;
+    }
+  </style>
+  <body>
+    <div id="one">sticky</div>
+    <div id="two">static</div>
+    <div id="three">fixed</div>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </body>
+</html>

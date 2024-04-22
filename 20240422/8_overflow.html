@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>overflow</title>
+  </head>
+  <style>
+    p {
+      background-color: aqua;
+      width: 200px;
+      height: 100px;
+    }
+    div {
+      border: 2px solid gray;
+      width: 500px;
+      height: 350px;
+      overflow: auto;
+    }
+    /*  hidden: 부모 영역을 벗어나는 요소가 보이지 않는다.
+        scroll: 부모 영역을 벗어나는 요소를 스크롤하여 볼 수 있도록 한다.
+        auto: 자동으로 스크롤이 생긴다. (안 생기는 경우도 있다.) */
+  </style>
+  <body>
+    <div>
+      <p>block #1</p>
+      <p>block #2</p>
+      <p>block #3</p>
+      <p>block #4</p>
+      <p>block #5</p>
+    </div>
+  </body>
+</html>

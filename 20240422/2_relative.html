@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>relative</title>
+  </head>
+  <style>
+    /*  static: 정적 위치. 기본값. 일반적인 문서의 흐름
+        relative: 상대 위치. 일반적인 문서의 흐름에 따라 배치하되, 상하좌우 위치 값에 따라 조절할 수 있다.
+        absolute: 절대 위치. 일반적인 문서의 흐름을 제거하고, 가장 가까운 position 조정 요소에 대해 상대적으로 조절된다.
+        fixed: 고정 위치. 일반적인 문서 흐름대로 움직이다가, 지정한 위치에 고정된다. */
+    #one {
+      background-color: aqua;
+      width: 200px;
+      height: 100px;
+      position: static;
+      left: 50px;
+      top: 20px;
+    }
+    /* 움직임 없음 */
+    #two {
+      background-color: pink;
+      width: 200px;
+      height: 100px;
+      position: relative;
+      left: 50px;
+      top: 20px;
+    }
+    /* 오른쪽으로 50, 아래로 20 씩 움직임  */
+    #three {
+      background-color: mediumpurple;
+      width: 200px;
+      height: 100px;
+    }
+  </style>
+  <body>
+    <p id="one">Block #1</p>
+    <div id="two">Block #2<br />position: relative;</div>
+    <p id="three">Block #3</p>
+  </body>
+</html>

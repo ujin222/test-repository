@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Absolute</title>
+  </head>
+  <style>
+    /*  static: 정적 위치. 기본값. 일반적인 문서의 흐름
+        relative: 상대 위치. 일반적인 문서의 흐름에 따라 배치하되, 상하좌우 위치 값에 따라 조절할 수 있다.
+        absolute: 절대 위치. 일반적인 문서의 흐름을 제거하고, 가장 가까운 position 조정 요소에 대해 상대적으로 조절된다.
+        fixed: 고정 위치. 일반적인 문서 흐름대로 움직이다가, 지정한 위치에 고정된다. */
+    #one {
+      background-color: aqua;
+      width: 800px;
+      height: 400px;
+      position: absolute;
+      left: 100px;
+      top: 100px;
+    }
+    #two {
+      background-color: pink;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      /* left: 1px;
+      top: 1px; */
+    }
+    /* 가장 가까운 조상 요소를 기준으로 움직임 */
+    #three {
+      background-color: plum;
+      width: 300px;
+      height: 100px;
+      position: absolute;
+      left: 200px;
+      top: 200px;
+    }
+    /* 얘는 조상 요소가 body이기 때문에 body를 기준으로 이동 */
+  </style>
+  <body>
+    <div id="one">
+      <div id="two">Block #2<br />position: absolute;</div>
+    </div>
+    <div id="three"></div>
+  </body>
+</html>

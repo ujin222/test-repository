@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>float</title>
+  </head>
+  <style>
+    /* img.a {
+      float: left;
+    } */
+    /* float 을 사용하면, 블록 요소여도 옆에 다른 요소가 올 수 있다. */
+    /* p {
+      display: inline-block;
+    } */
+
+    div {
+      border: 1px solid gray;
+      width: 100px;
+      height: 100px;
+    }
+    .left {
+      float: left;
+    }
+    .right {
+      float: right;
+    }
+    .one {
+      background-color: skyblue;
+    }
+    .two {
+      background-color: pink;
+      /* clear: both; */
+      /* clear: both 는 영향을 받지 않도록 막아주는 역할을 한다. */
+    }
+    .three {
+      background-color: plum;
+    }
+    .four {
+      background-color: wheat;
+    }
+  </style>
+  <body>
+    <!-- <img class="a" src="../resources/img/벚꽃.jpg" width="160" height="120" />
+    <p>세상이 그대를 속일지라도 슬퍼하거나 노여워 말라. ...</p> -->
+
+    <div class="one left">박스 1</div>
+    <div class="two left">박스 2</div>
+    <div class="three left">박스 3</div>
+    <div class="four left">박스 4</div>
+    <div class="one right">박스 1</div>
+    <div class="two right">박스 2</div>
+    <div class="three right">박스 3</div>
+    <div class="four right">박스 4</div>
+  </body>
+</html>
+
+<!-- float 은 불편하고 깔끔하지 않아서 잘 사용하지 않는다. -->

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flex justify</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    ul {
+      display: flex;
+      list-style-type: none;
+      border: 5px solid magenta;
+      padding: 0;
+      flex-direction: column;
+      height: 500px;
+      /* justify-content: flex-start; */
+      /* justify-content: flex-end; */
+      /* justify-content: center; */
+      /* justify-content: space-between; */
+      justify-content: space-around;
+      /* justify-content: space-evenly; */
+
+      /* justify-contant (주축 중심)
+         flex-start: 시작점부터 끝점으로 배치
+         flex-end: 끝점부터 시작점으로 배치 (요소 순서는 바뀌지 않음)
+         center: 중심부로 배치
+         space-between: 일정한 간격으로 양끝 정렬 배치
+         space-around: 모든 요소가 동일한 여백을 갖도록 배치 (양끝 x)
+         space-evenly: 모든 요소가 동일한 간격을 유지한 채 배치 (양끝 o) */
+    }
+  </style>
+  <body>
+    <ul>
+      <li>강아지</li>
+      <li>고양이</li>
+      <li>다람쥐</li>
+      <li>호랑이</li>
+      <li>코끼리</li>
+    </ul>
+  </body>
+</html>
