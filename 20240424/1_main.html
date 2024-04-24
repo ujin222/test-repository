@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YJ 쇼핑몰</title>
+  </head>
+  <style>
+    /* 공통 스타일 */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    ul {
+      padding: 0;
+      list-style-type: none;
+    }
+    a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+    }
+
+    /* wrapper 스타일 */
+    #wrapper {
+      border: 2px solid orange;
+      display: flex;
+      flex-direction: column;
+      gap: 1%;
+    }
+
+    /* herder 스타일 */
+    #header {
+      background-color: #ffd65c;
+      height: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 30px 30px 30px 30px;
+    }
+    #header > span {
+      font-size: 2em;
+      font-weight: 900;
+      color: #53188b;
+    }
+
+    /* nav 스타일 */
+    #nav {
+      background-color: #d1b3e0;
+      height: 10%;
+      margin: 0;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      border-radius: 30px 30px 30px 30px;
+    }
+    #nav > li > a {
+      letter-spacing: 0.3em;
+    }
+    /* main 스타일 */
+    #main {
+      /* background-color: aqua; */
+      height: 70%;
+      display: flex;
+    }
+    .aside {
+      background-color: #faebeb;
+      width: 15%;
+      padding: 2% 1%;
+      border-radius: 20px 20px 20px 20px;
+    }
+    .aside li {
+      background-color: #e6b3b3;
+      padding: 7% 7%;
+      border-bottom: 1px solid #d1a3a3;
+    }
+    .aside li:last-of-type {
+      border-bottom: 1px solid #e6b6b6;
+    }
+
+    #center {
+      background-color: #fafafa;
+      width: 70%;
+      display: flex;
+      padding: 2%;
+      gap: 1%;
+    }
+    .section {
+      /* flex-grow: 1; */
+      width: 33%;
+      border: 1px solid #e5e5e5;
+      display: flex;
+      flex-direction: column;
+    }
+    .section a {
+      color: black;
+      font-weight: 100;
+    }
+    .section a:hover {
+      text-decoration: underline;
+    }
+    .image-section {
+      height: 70%;
+    }
+    .desc-section {
+      height: 25%;
+    }
+    .btn-section {
+      height: 5%;
+    }
+    .btn-section button {
+      width: 100%;
+      height: 100%;
+    }
+    .right {
+      color: blue;
+      text-decoration: underline;
+      font-weight: 100;
+    }
+
+    /* footer 스타일 */
+    #footer {
+      background-color: #ccccf2;
+      height: 10%;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <img src="../resources/img/시나모롤.png" width="90px" height="70px" />
+        <span> YJ Shopping</span>
+      </div>
+      <ul id="nav">
+        <li><a href="#">home</a></li>
+        <li><a href="#">Shopping about</a></li>
+        <li><a href="#">news</a></li>
+        <li><a href="#">my account</a></li>
+        <li><a href="#">contacts</a></li>
+      </ul>
+      <div id="main">
+        <div class="aside">
+          <h3>카테고리</h3>
+          <ul>
+            <li><a href="#">컴퓨터</a></li>
+            <li><a href="#">의류</a></li>
+            <li><a href="#">음악</a></li>
+            <li><a href="#">영화</a></li>
+            <li><a href="#">스포츠/레저</a></li>
+            <li><a href="#">가구/인테리어</a></li>
+            <li><a href="#">식품</a></li>
+          </ul>
+        </div>
+        <div id="center">
+          <div class="section">
+            <div
+              class="image-section"
+              style="
+                background-image: url(../resources/img/한성컴퓨터.jpg);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+              "
+            ></div>
+            <div class="desc-section">
+              <a href="#">한성컴퓨터 TFG AX8726 본체 데스크탑</a>
+            </div>
+            <div class="btn-section">
+              <button>쇼핑카트에 추가하기</button>
+            </div>
+          </div>
+          <div class="section">
+            <div
+              class="image-section"
+              style="
+                background-image: url(../resources/img/gram.jpg);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+              "
+            ></div>
+            <div class="desc-section">
+              <a href="#">LG gram i7 8700/RTX2060 노트북</a>
+            </div>
+            <div class="btn-section">
+              <button>쇼핑카트에 추가하기</button>
+            </div>
+          </div>
+          <div class="section">
+            <div
+              class="image-section"
+              style="
+                background-image: url(../resources/img/아이맥.jpg);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+              "
+            ></div>
+            <div class="desc-section">
+              <a href="#">애플정품/아이맥/MNE92KH</a>
+            </div>
+            <div class="btn-section">
+              <button>쇼핑카트에 추가하기</button>
+            </div>
+          </div>
+        </div>
+        <div class="aside">
+          <h3>Shopping Cart</h3>
+          <p>현재 쇼핑카트에 물품이 없습니다.</p>
+          <a href="#" class="right">쇼핑카트 보기</a>
+          <h3>Log In</h3>
+          아이디<br />
+          <input type="text" /><br />
+          패스워드<br />
+          <input type="password" /><br /><br />
+          <input type="submit" value="로그인" />
+          <input type="reset" value="초기화" />
+          <br />
+          <a href="#" class="right">회원가입</a>
+          <a href="#" class="right">비밀번호 분실</a>
+        </div>
+      </div>
+      <div id="footer">
+        <p>2024.04.24 jeong yujin 042-584-2555</p>
+      </div>
+    </div>
+  </body>
+</html>
