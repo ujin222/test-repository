@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>grid template</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    .container {
+      padding: 0;
+      margin: 0;
+      height: 500px;
+      list-style-type: none;
+      border: 5px solid teal;
+
+      display: grid;
+      /* grid-template-columns: 100px 200px;
+      grid-template-rows: 100px 200px; */
+
+      /* grid-template-columns: 10% 20% 20%;
+      grid-template-rows: 10% 20%; */
+
+      /* grid-template-columns: 100px 100px 100px 100px 100px 100px 100px 100px 100px;
+                                위 방법은 번거롭고 복잡함 */
+      /* grid-template-columns: 1fr 2fr;
+      grid-template-rows: 1fr 2fr; */
+
+      /* grid-template-columns: 100px 20% 1fr;
+                            단위를 여러개 섞어서 사용 가능 */
+
+      /* grid-template-columns: repeat(2, 1fr 3fr 2fr);
+      grid-template-rows: repeat(2, 1fr 2fr);
+                        repeat을 사용하여 반복 가능
+                                (2반 반복, 수치 ...) */
+
+      /* grid-template-columns: 3fr 2fr;
+      grid-template-rows: 1fr 1fr 2fr 1fr 1fr; */
+
+      /* grid-template-columns: 1fr 200px 3fr;
+      grid-template-rows: 1fr 2fr 1fr; */
+
+      /* grid-template-columns: repeat(2, 1fr 4fr);
+      grid-template-rows: repeat(2, 2fr 1fr); */
+
+      /* grid-template-columns: repeat(auto-fill, minmax(300px, auto)); */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+      /* grid-template-columns: repeat(auto-fill, minmax(최소값, 최대값));
+         grid-template-columns: repeat(auto-fit, minmax(최소값, 최대값));
+         auto-fill과 auto-fit은 coiumn의 개수를 미리 정하지 않고
+         설정된 너비가 허용하는 한 최대로 셀을 채운다.
+         fill과 fit의 차이점: fill은 남는 공간까지 꽉 채우지는 않고, fit은 남는 공간까지 꽉 채운다. */
+    }
+    li {
+      background-color: beige;
+      border: 3px solid bisque;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <body>
+    <ul class="container">
+      <li class="item">1</li>
+      <li class="item">2</li>
+      <li class="item">3</li>
+      <li class="item">4</li>
+      <li class="item">5</li>
+      <li class="item">6</li>
+      <li class="item">7</li>
+      <li class="item">8</li>
+      <li class="item">9</li>
+    </ul>
+  </body>
+</html>

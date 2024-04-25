@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>grid layout1</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    .container {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      list-style-type: none;
+      display: grid;
+      grid-template-columns: 1fr 4fr;
+      grid-template-rows: 1fr 3fr 1fr;
+      grid-template-areas:
+        "h h"
+        "a m"
+        "f f";
+      gap: 10px;
+    }
+    #header {
+      background-color: navajowhite;
+      grid-area: h;
+    }
+    #aside {
+      background-color: pink;
+      grid-area: a;
+    }
+    #main {
+      background-color: mistyrose;
+      grid-area: m;
+    }
+    #footer {
+      background-color: plum;
+      grid-area: f;
+    }
+  </style>
+  <body>
+    <ul class="container">
+      <li id="header">header</li>
+      <li id="aside"></li>
+      <li id="main"></li>
+      <li id="footer">footer</li>
+    </ul>
+  </body>
+</html>

@@ -27,17 +27,22 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      color: #c4c3ca;
     }
     #main {
       width: 500px;
       height: 500px;
-      background-color: #fafafa;
+      background-color: #2a2b38;
       display: flex;
       flex-direction: column;
+      border-radius: 5px;
     }
     h3 {
       margin: 50px;
       text-align: center;
+      font-size: 36px;
+      font-weight: 800;
+      color: white;
     }
     #input-section {
       width: 100%;
@@ -53,8 +58,19 @@
     }
     #input-section input:not([type="submit"]) {
       width: 100%;
-      padding: 2% 6%;
+      padding: 3% 8%;
+      font-weight: 500;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      border: none;
+      color: #c4c3ca;
+      background-color: #1f2029;
     }
+    #input-section input:not([type="submit"]):focus {
+      border: none;
+      outline: none;
+    }
+
     #input-section > div {
       margin-top: 2%;
     }
@@ -62,26 +78,34 @@
       margin-top: 2%;
       width: 100px;
       height: 40px;
-      background-color: bisque;
-      border-radius: 10px;
+      background-color: #ffeba7;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      border: none;
     }
     .icon {
       width: 8px;
       height: 8px;
       position: absolute;
-      top: 25%;
-      left: 2%;
+      top: 28%;
+      left: 3%;
+      color: #ffeba7;
     }
     #forgot {
       height: 10%;
     }
     a {
-      color: black;
+      color: white;
       text-decoration: none;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
+    }
+    #forgot > a:hover {
+      color: #ffeba7;
     }
   </style>
   <body>

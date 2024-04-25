@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>grid area</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    .container {
+      padding: 0;
+      margin: 0;
+      height: 500px;
+      list-style-type: none;
+      border: 5px solid teal;
+
+      display: grid;
+      grid-template-columns: 100px 1fr 100px;
+      grid-template-rows: 70px 70px 1fr 70px;
+      grid-template-areas:
+        "h h h"
+        "n n n"
+        "l m r"
+        "f f f";
+      /* 원하는 위치에 명칭을 넣어 레이아웃을 묶어줄 수 있다.
+         같은 명칭이 띄엄띄엄(r m r) 있으면 오류가 뜨기 때문에 명칭을 달리 해줘야 한다. */
+    }
+    li {
+      background-color: beige;
+      border: 3px solid pink;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    li:nth-child(1) {
+      grid-area: h;
+    }
+    li:nth-child(2) {
+      grid-area: n;
+    }
+    li:nth-child(3) {
+      grid-area: l;
+    }
+    li:nth-child(4) {
+      grid-area: r;
+    }
+    li:nth-child(5) {
+      grid-area: m;
+    }
+    li:nth-child(6) {
+      grid-area: f;
+    }
+    /* grid-area 는 명칭을 부여해주는 역할을 한다. */
+  </style>
+  <body>
+    <ui class="container">
+      <li class="item">HEADER</li>
+      <li class="item">NAV</li>
+      <li class="item">LEFT</li>
+      <li class="item">RIGHT</li>
+      <li class="item">MAIN</li>
+      <li class="item">FOOTER</li>
+    </ui>
+  </body>
+</html>
