@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    #wrapper {
+      display: grid;
+      grid-template-rows: repeat(
+        1,
+        1fr minmax(65px, auto) 6fr minmax(65px, auto)
+      );
+      gap: 1%;
+    }
+    #header {
+      background-color: #ffd65c;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1%;
+    }
+    #header div {
+      width: 6%;
+      height: 100%;
+    }
+    #header span {
+      font-size: 2rem;
+      font-weight: 800;
+      color: white;
+    }
+    #nav {
+      background-color: #d1b3e0;
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(10%, auto));
+      align-items: center;
+      justify-content: space-evenly;
+      justify-items: center;
+    }
+    li {
+      color: white;
+      font-weight: 600;
+    }
+    li a {
+      color: inherit;
+      text-decoration: none;
+    }
+    #main {
+      display: grid;
+      grid-template-columns: 1fr 4fr 1fr;
+      gap: 1%;
+    }
+    .aside {
+      background-color: #faebeb;
+      padding: 7%;
+    }
+    #category {
+      background-color: #e6b3b3;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+    #category li {
+      padding: 7%;
+      border-bottom: 1px solid #d1a3a3;
+      cursor: pointer;
+    }
+    #category li:nth-child(1) {
+      border-top: 1px solid #d1a3a3;
+    }
+    #category li:hover {
+      background-color: #a17f7f;
+    }
+    #content {
+      background-color: #fafafa;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      padding: 2%;
+      gap: 1%;
+    }
+    .item {
+      border: 1px solid #e5e5e5;
+      padding: 5%;
+      display: grid;
+      grid-template-rows: 5fr 4fr 1fr;
+      gap: 1%;
+    }
+    .item a {
+      color: black;
+      text-decoration: none;
+    }
+    .item a:hover {
+      color: blue;
+      text-decoration: underline;
+    }
+    .item-desc {
+      align-self: center;
+    }
+    .item button {
+      width: 100%;
+      height: 100%;
+    }
+    #footer {
+      background-color: #ccccf2;
+      text-align: center;
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <div
+          style="
+            background-image: url(../resources/img/시나모롤.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+          "
+        ></div>
+        <span>YJ Shopping</span>
+      </div>
+      <ul id="nav">
+        <li><a href="#">HOME</a></li>
+        <li><a href="#">SHOPPING ABOUT</a></li>
+        <li><a href="#">NEWS</a></li>
+        <li><a href="#">MY ACCOUNT</a></li>
+        <li><a href="#">CONTACTS</a></li>
+      </ul>
+      <div id="main">
+        <div id="aside1" class="aside">
+          <h3>카테고리</h3>
+          <ul id="category">
+            <li><a href="#">컴퓨터</a></li>
+            <li><a href="#">의류</a></li>
+            <li><a href="#">음악</a></li>
+            <li><a href="#">영화</a></li>
+            <li><a href="#">스포츠/레저</a></li>
+            <li><a href="#">가구/인테리어</a></li>
+            <li><a href="#">식품</a></li>
+          </ul>
+        </div>
+        <div id="content">
+          <div class="item">
+            <div
+              style="
+                background-image: url(../resources/img/한성컴퓨터.jpg);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+              "
+            ></div>
+            <div class="item-desc">
+              <a href="#">한성컴퓨터 TFG AX8726 게이밍 본체 데스크탑</a>
+            </div>
+            <div>
+              <button>쇼핑카트에 추가하기</button>
+            </div>
+          </div>
+          <div class="item">
+            <div
+              style="
+                background-image: url(../resources/img/그램.jpg);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+              "
+            ></div>
+            <div class="item-desc">
+              <a href="#">LG 그램 gram i7 8700 노트북</a>
+            </div>
+            <div>
+              <button>쇼핑카트에 추가하기</button>
+            </div>
+          </div>
+          <div class="item">
+            <div
+              style="
+                background-image: url(../resources/img/아이맥.jpg);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+              "
+            ></div>
+            <div class="item-desc">
+              <a href="#">Apple 정품 아이맥 MNE92KH/A</a>
+            </div>
+            <div>
+              <button>쇼핑카트에 추가하기</button>
+            </div>
+          </div>
+        </div>
+        <div id="aside2" class="aside">
+          <h3>Shopping Cart</h3>
+          <p>현재 쇼핑카트에 물품이 없습니다.</p>
+          <a href="#">쇼핑카트 보기</a>
+          <h3>Log In</h3>
+          <p>
+            아이디 <br />
+            <input type="text" />
+          </p>
+          <p>
+            패스워드 <br />
+            <input type="password" />
+          </p>
+          <br />
+          <input type="button" value="로그인" />
+          <input type="reset" value="초기화" />
+          <br />
+          <a href="#">회원가입</a>
+          <a href="#">비밀번호 찾기</a>
+        </div>
+      </div>
+      <div id="footer">
+        <p>2024. 04. 26 Jeong Yujin 042-123-4567</p>
+      </div>
+    </div>
+  </body>
+</html>
