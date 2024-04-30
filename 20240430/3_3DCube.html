@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Cube</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    #wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .cube {
+      width: 200px;
+      height: 200px;
+      /* background-color: antiquewhite; */
+      position: relative;
+      transform-style: preserve-3d;
+      transition: all 5s;
+    }
+    .cube div {
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      font-weight: 600;
+      top: 0;
+      left: 0;
+      /* opacity: 0.5; */
+      border: 2px solid white;
+      box-shadow: 0 0 40px 3px yellow;
+    }
+    /* hsla()
+        h: hue - 색상(=색조 =색깔) 0 ~ 360
+        s: saturation - 채도(=컬러 =음영) 0 ~ 100%
+        l: lightness - 명도(=밝기) 0 ~ 100%
+        a: alpha - 불투명도 0.0 ~ 1.0
+       */
+    .cube div:nth-child(1) {
+      background-color: hsla(0, 100%, 50%, 0.5);
+      transform: translateZ(100px);
+    }
+    .cube div:nth-child(2) {
+      background-color: hsla(60, 100%, 50%, 0.5);
+      transform: translateX(-100px) rotateY(-90deg);
+    }
+    .cube div:nth-child(3) {
+      background-color: hsla(120, 100%, 50%, 0.5);
+      transform: translateZ(-100px);
+    }
+    .cube div:nth-child(4) {
+      background-color: hsla(180, 100%, 50%, 0.5);
+      transform: translateX(100px) rotateY(90deg);
+    }
+    .cube div:nth-child(5) {
+      background-color: hsla(240, 100%, 50%, 0.5);
+      transform: translateY(-100px) rotateX(90deg);
+    }
+    .cube div:nth-child(6) {
+      background-color: hsla(320, 100%, 50%, 0.5);
+      transform: translateY(100px) rotateX(-90deg);
+    }
+    .cube:hover {
+      /* transform: rotateX(360deg); */
+      /* transform: rotateY(360deg); */
+      animation: cube 8s;
+    }
+
+    @keyframes cube {
+      /* 0% {
+        transform: rotateY(0deg);
+      }
+      15% {
+        transform: rotateY(90deg);
+      }
+      30% {
+        transform: rotateY(180deg);
+      }
+      45% {
+        transform: rotateY(270deg);
+      }
+      60% {
+        transform: rotateX(-90deg);
+      }
+      75% {
+        transform: rotateX(90deg);
+      } */
+      from {
+        transform: rotateX(360deg) rotateY(0deg) rotateZ(0deg);
+      }
+      to {
+        transform: rotateX(0deg) rotateY(360deg) rotateZ(360deg);
+      }
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div class="cube">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+      </div>
+    </div>
+  </body>
+</html>
