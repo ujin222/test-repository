@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>함수 연습</title>
+  </head>
+  <style>
+    p {
+      font-size: 2rem;
+      color: magenta;
+      background-color: mistyrose;
+      font-weight: 800;
+    }
+    .result {
+      font-size: 3rem;
+      color: hotpink;
+      background-color: mistyrose;
+      font-weight: 800;
+    }
+  </style>
+  <body>
+    <script>
+      // 1. 입력 값을 전달 받아 경고창을 띄워주는 함수를 작성하세요.
+
+      /* let message;
+
+         message = "경고입니다.";
+
+         alert(message);
+      */
+
+      function showMessage(danger) {
+        alert(danger);
+      }
+
+      showMessage("경고입니다.");
+
+      // 2. 두 개의 숫자를 입력 받아 나머지를 화면에 출력하는 함수를 작성하세요.
+
+      /* function add(num1, num2) {
+        let sum = 0;
+        sum = num1 % num2;
+        return sum;
+      }
+
+      let result = add(10, 3);
+      document.write(result); */
+
+      function number(num1 = 1, num2 = 1) {
+        let result = 0;
+        result = num1 % num2;
+        document.write(`<div class='result'>${result}</div>`);
+      }
+
+      number(10, 3);
+    </script>
+  </body>
+</html>

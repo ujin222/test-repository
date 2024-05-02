@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>연산자</title>
+  </head>
+  <body>
+    <script>
+      // 수학 연산자
+      // +(덧셈), -(뺼셈), *(곱셈), /(나눗셈), %(나머지)
+      let result = 0;
+
+      let a = 5;
+      let b = 10;
+      result = a + b / 2;
+      result = b % 3;
+      // b 를 3 으로 나눈 후 남은 나머지를 구하는 값. 홀수 짝수를 구할 때에도 사용된다.
+
+      // 문자열 연산
+      let message = "my";
+      let message2 = " string";
+      let checked = true;
+
+      result = message + message2;
+
+      result = message + message2 + checked;
+      // 문자형과 다른 자료형을 + 연산 하면 다른 자료형이 문자열로 변환되어 연산된다.
+
+      //   result = 'my' + 'string';
+      //   하드코딩 방식의 연산이다. 위 방식은 result 값이 한정되기 때문에 직접 변경밖에 방법이 없다.
+
+      result = "1" + 2 + 2;
+      //   숫자에 ""을 넣으면 문자형이 된다.
+      //   처음 1을 문자형으로 줬기 때문에 뒤에 연산되는 자료형도 모두 문자열로 변환된다.
+
+      result = "1" + a;
+      result = `1${a}`;
+
+      result = a - "2";
+      //   덧셈을 제외한 뺄셈, 곱셈, 나눗셈 등에는 뒤에 문자열이 있어도 숫자열로 변환되어 연산한다.
+
+      result = +message + a; // 숫자 아닌 것 + 숫자 이므로 NaN이 나옴
+      result = +"2" + a; // 숫자로 변경 + 숫자 이므로 7이 나옴
+      //   문자열 앞에 +를 붙여주면 숫자열로 변환된다.
+
+      // 비교 연산자
+      result = a > b;
+      result = a >= b;
+      result = a == b;
+      result = a != b; // ! 는 부정 연산자이다. != 는 다르냐를 묻는 것.
+      result = !checked; // true 값 앞에 부정 연산자를 넣으면 false 가 나온다.
+
+      result = "2" < 1;
+      result = "01" == 1;
+      // 문자형이 숫자형으로 변환되어 값이 나온다. (형 변환)
+
+      result = true == 1;
+      result = false == 0;
+      // 비교 연산시 true(truthy)의 값이 1, false(falsy)의 값이 0이다.
+
+      result = "0" === 0;
+      // === 는 값과 타입이 모두 같으면 true가 나온다. 위 같은 경우는 '0'이 문자열이기 때문에 false.
+      result = "0" !== 0;
+      // !== 는 값과 타입이 모두 다르면 true. 위 경우는 타입은 다르지만 값이 같기 때문에 false.
+
+      // null, undefined 비교
+      // ==, != : 동등 비교 연산
+      // ===, !== : 일치 비교 연산
+      // <, <=, >, >= : 기타 비교 연산
+      result = null > 0;
+      result = "null" == 0;
+      result = null >= 0;
+      //null 은 숫자로 변환되지 않는다. 하지만 기타 비교 연산의 경우 숫자로 변환된다.
+
+      // 증감 연산자
+      let counter = 2;
+      // console.log(counter);
+      // counter = counter + 1;
+      // console.log(counter);
+      // counter += 1;
+      result = counter;
+
+      //   후위형 : 증가, 감소 전의 값으로 나타난다. 그 이후에 +1이 된다.
+      counter++;
+      counter--;
+      //   전위형 : 증가, 감소 후의 새로운 값으로 나타난다.
+      ++counter;
+      --counter;
+
+      let c = counter++;
+      result = c;
+
+      // console.log('문자열' + 1 + ture + false + 2);
+      //   console.log(a + b + 3);
+      //   console.log(message + " numder is");
+      //   console.log("my number is " + a);
+
+      //   console.log("result: " + result);
+
+      //   "" + 1 + 0  ""10
+      //   "" - 1 + 0  ""-1  -> ""이 palsy 값이 되어 0이 된다.
+      //   true + false  1
+      //   6 / "3"  2
+      //   "2" * "3"  6
+
+      alert("alert 함수입니다.");
+      console.log(`result : ${result}`);
+    </script>
+  </body>
+</html>
