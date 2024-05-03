@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>조건문 연습</title>
+  </head>
+  <body>
+    <script>
+      // 0. 변수 선언
+
+      let sum = 0;
+      let first = 0;
+      let second = 0;
+      let operator = 0;
+
+      //   add = first + second;
+      //   sub = first - second;
+      //   multiple = first * second;
+      //   division = first / second;
+      //   remain = first % second;
+
+      // 1. 첫번째 숫자를 입력받을 프롬프트를 띄운다.
+
+      first = +prompt("첫번째 숫자를 입력해주세요.");
+      console.log(first);
+
+      // 2. 두번째 숫자를 입력받을 프롬프트를 띄운다.
+
+      second = +prompt("두번째 숫자를 입력해주세요.");
+      console.log(second);
+
+      // 3. 연산자를 입력받을 프롬프트를 띄운다.
+
+      operator = prompt("연산자를 입력해주세요. (+,-,*,/,% 중 하나)");
+      console.log(operator);
+
+      // 4. 연산자를 확인할 조건문 안에서 계산 결과를 도출한다.
+
+      if (sum) {
+      } else if (operator === "+") {
+        sum = first + second;
+      } else if (operator === "-") {
+        sum = first - second;
+      } else if (operator === "*") {
+        sum = first * second;
+      } else if (doperator === "/") {
+        sum = first / second;
+      } else if (operator === "%") {
+        sum = first % second;
+      } else {
+        alert("잘못된 방식입니다.");
+      }
+
+      // 5. 화면에 출력한다.
+
+      document.write(`<h2>${first}${operator}${second}=${sum}</h2>`);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>가위바위보</title>
+  </head>
+  <body>
+    <script>
+      // 이기는 경우: 가위 - 보, 바위 - 가위, 보 - 가위
+      // 지는 경우: 가위 - 바위, 바위 - 보, 보 - 바위
+      // 비기는 경우: 가위 - 가위, 바위 - 바위, 보 - 보
+
+      // 0.  변수 선언
+
+      let user1;
+      let user2;
+      let result;
+      let userNum1;
+      let userNum2;
+
+      function changeRsp(rsp) {
+        if (rsp == "가위") {
+          return 1;
+        } else if (rsp == "바위") {
+          return 2;
+        } else if (rsp == "보") {
+          return 3;
+        }
+      }
+
+      // 1. 1번 사용자에게 가위바위보를 입력 받는다.
+
+      user1 = prompt("유저1: 가위,바위,보 중 하나를 입력하세요.");
+      userNum1 = changeRsp(user1);
+      //   if (user1 == "가위") {
+      //     userNum1 = 1;
+      //   } else if (user1 == "바위") {
+      //     userNum1 = 2;
+      //   } else if (user1 == "보") {
+      //     userNum1 = 3;
+      //   }
+
+      // 2. 2번 사용자에게 가위바위보를 입력 받는다.
+
+      user2 = prompt("유저2: 가위, 바위, 보 중 하나를 입력하세요.");
+      userNum2 = changeRsp(user2);
+      //   if (user2 == "가위") {
+      //     userNum2 = 1;
+      //   } else if (user2 == "바위") {
+      //     userNum2 = 2;
+      //   } else if (user2 == "보") {
+      //     userNum2 = 3;
+      //   }
+
+      // 3. 1번 사용자와 2번 사용자가 낸 가위바위보를 비교한다.
+
+      switch (userNum1 - userNum2) {
+        case -2:
+        case 1:
+          result = "유저 1 이 이겼습니다!!";
+          break;
+        case -1:
+        case 2:
+          result = "유저 2 가 이겼습니다!!";
+          break;
+        case 0:
+          result = "비겼습니다!!";
+          break;
+        default:
+          alert("다시 입력하세요.");
+          result = "다시 입력하세요.";
+          break;
+      }
+
+      // 4. 결과를 화면에 출력한다.
+
+      document.write(`
+        <h1>유저 1 : ${user1}</h2>
+        <h1>유저 2 : ${user2}</h2>
+        <h1>결과 : ${result}</h2>
+
+
+          `);
+    </script>
+  </body>
+</html>

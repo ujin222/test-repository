@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>조건문 연습2</title>
+  </head>
+  <body>
+    <script>
+      // 100~90: A, 89~80: B, 79~70: C, 69~60: D 59이하: F
+
+      // 0. 변수 선언
+
+      let grade = 0;
+      let score = 0;
+
+      // 1. 사용자에게 점수를 입력 받는다.
+
+      grade = +prompt("점수를 입력하세요.");
+      console.log(grade);
+
+      // 2. 입력 받은 점수를 바탕으로 성적 등급 구간을 도출한다.
+
+      // 3. 도출된 값을 switch문을 통해 등급을 정한다.
+
+      switch (parseInt(grade / 10)) {
+        case 10:
+        case 9:
+          score = "A";
+          break;
+        case 8:
+          score = "B";
+          break;
+        case 7:
+          score = "C";
+          break;
+        case 6:
+          score = "D";
+          break;
+        case 5:
+        case 4:
+        case 3:
+        case 2:
+        case 1:
+        case 0:
+          score = "F";
+          break;
+        default:
+          alert("잘못 입력하셨습니다.");
+          break;
+      }
+
+      // 4. 결과를 화면에 도출한다.
+
+      document.write(`<h1>${score}</h1>`);
+
+      // if문으로 만들어보세요.
+      /* if (score) {
+        } else if (90 <= grade && 100 >= grade) {
+          score = "A";
+        } else if (80 <= grade && 89 >= grade) {
+          score = "B";
+        } else if (70 <= grade && 79 >= grade) {
+          score = "C";
+        } else if (60 <= grade && 69 >= grade) {
+          score = "D";
+        } else if (0 <= grade && 59 >= grade) {
+          score = "F";
+        } else {
+          alert("다시 입력하세요");
+        }
+
+        document.write(`<h2>${score}</h2>`); */
+
+      // && : and 연산자, || : or 연산자
+    </script>
+  </body>
+</html>
