@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>for 반복문 연습</title>
+  </head>
+  <body>
+    <script>
+      // 1 ~ 20 까지의 숫자 중 짝수만 출력하세요.
+      for (let i = 2; i <= 20; i += 2) {
+        document.write(`<h1>${i}</h1>`);
+      }
+
+      // 별 찍기
+
+      for (let a = 1; a <= 5; a++) {
+        for (let s = 1; s <= 5; s++) {
+          document.write(`<span>*</span>`);
+        }
+        document.write(`<br>`);
+      }
+
+      document.write(`<hr>`);
+
+      for (let b = 1; b <= 5; b++) {
+        for (let c = 1; c <= 5; c++) {
+          sum = sum - 1;
+          document.write(`${c}`);
+        }
+        document.write(`<br>`);
+      }
+    </script>
+  </body>
+</html>

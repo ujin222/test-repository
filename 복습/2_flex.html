@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flex 복습</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    #wrapper {
+      display: flex;
+      /* flex-direction: row; */
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    #wrapper div {
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+      background-color: cyan;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div>
+        <span>정렬</span>
+      </div>
+      <div>
+        <span>정렬</span>
+      </div>
+      <div>
+        <span>정렬</span>
+      </div>
+      <div>
+        <span>정렬</span>
+      </div>
+      <div>
+        <span>정렬</span>
+      </div>
+    </div>
+  </body>
+</html>
