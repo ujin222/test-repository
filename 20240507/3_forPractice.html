@@ -14,6 +14,13 @@
 
       // 별 찍기
 
+      /* 1번
+       *****
+       *****
+       *****
+       *****
+       *****
+       */
       for (let a = 1; a <= 5; a++) {
         for (let s = 1; s <= 5; s++) {
           document.write(`<span>*</span>`);
@@ -23,10 +30,185 @@
 
       document.write(`<hr>`);
 
+      /* 2번
+       *
+       **
+       ***
+       ****
+       *****
+       */
+
       for (let b = 1; b <= 5; b++) {
-        for (let c = 1; c <= 5; c++) {
-          sum = sum - 1;
-          document.write(`${c}`);
+        for (let c = 1; c <= b; c++) {
+          document.write(`*`);
+        }
+        document.write(`<br>`);
+      }
+
+      document.write(`<hr>`);
+
+      /* 3번
+       *
+       **
+       ***
+       ****
+       *****
+       */
+
+      for (let i = 1; i <= 5; i++) {
+        for (let k = 4; k >= i; k--) {
+          document.write(`&nbsp;`);
+        }
+        for (let j = 1; j <= i; j++) {
+          document.write(`*`);
+        }
+        document.write(`<br>`);
+      }
+
+      document.write(`<hr>`);
+
+      /* 4번
+       *****
+       ****
+       ***
+       **
+       *
+       */
+
+      for (let e = 1; e <= 5; e++) {
+        for (let r = 5; r >= e; r--) {
+          document.write(`*`);
+        }
+        document.write(`<br>`);
+      }
+
+      document.write(`<hr>`);
+
+      /* 5번
+       *****
+       ****
+       ***
+       **
+       *
+       */
+
+      for (let i = 1; i <= 5; i++) {
+        for (let k = 1; k <= i - 1; k++) {
+          document.write(`&nbsp;`);
+        }
+        for (let j = 5; j >= i; j--) {
+          document.write(`*`);
+        }
+        document.write(`<br>`);
+      }
+
+      // document.write(`<hr>`);
+
+      // 1부터 사용자가 입력한 숫자까지의 합을 더해서 화면에 출력한다.
+
+      // 1. 사용자에게 값(숫자)을 입력 받는다.
+
+      /* let add = 0;
+      let num;
+      let result;
+      num = +prompt("숫자를 입력해주세요. (1~100까지)");
+      console.log(num);
+
+      // 2. 반복문을 사용하여 1부터 사용자가 입력한 숫자까지의 합을 화면에 출력한다.
+
+      for (let a = 0; a < num; a++) {
+        add = add + a;
+        result = add + num;
+      }
+      document.write(`<h1>입력한 숫자: ${num}, 총 합: ${result}</h1>`); */
+
+      document.write(`<hr>`);
+
+      /* 6번
+       *
+       ***
+       *****
+       *******
+       *********
+       */
+
+      for (let i = 1; i <= 5; i++) {
+        for (let k = 4; k >= i; k--) {
+          document.write(`&nbsp;`);
+        }
+        for (let j = 1; j <= i; j++) {
+          document.write(`*`);
+        }
+        for (let j = 1; j < i; j++) {
+          document.write(`*`);
+        }
+        document.write(`<br>`);
+      }
+
+      for (let i = 1; i <= 5; i++) {
+        for (let k = 4; k >= i; k--) {
+          document.write(`&nbsp;`);
+        }
+        for (let j = 1; j <= 2 * i - 1; j++) {
+          document.write(`*`);
+        }
+        document.write(`<br>`);
+      }
+
+      document.write(`<hr>`);
+
+      /* 7번
+       *********
+       *******
+       *****
+       ***
+       *
+       */
+
+      for (let a = 1; a <= 5; a++) {
+        for (let b = 1; b < a; b++) {
+          document.write(`&nbsp;`);
+        }
+        for (let c = 9; c >= 2 * a - 1; c--) {
+          document.write(`*`);
+        }
+        document.write(`<br>`);
+      }
+
+      for (let i = 1; i <= 5; i++) {
+        for (let k = 1; k <= i - 1; k++) {
+          document.write(`&nbsp;`);
+        }
+        for (let j = 5; j >= i; j--) {
+          document.write(`*`);
+        }
+        for (let t = 4; t >= i; t--) {
+          document.write(`*`);
+        }
+
+        document.write(`<br>`);
+      }
+
+      document.write(`<hr>`);
+
+      for (let a = 1; a <= 5; a++) {
+        for (let b = 4; b >= a; b--) {
+          document.write(`&nbsp;`);
+        }
+        for (let c = 1; c <= a; c++) {
+          document.write(`*`);
+        }
+        for (let d = 1; d < a; d++) {
+          document.write(`*`);
+        }
+        document.write(`<br>`);
+      }
+      for (let e = 1; e <= 5; e++) {
+        for (let f = 1; f < e; f++) {
+          document.write(`&nbsp;`);
+        }
+        for (let g = 9; g >= 2 * e - 1; g--) {
+          document.write(`*`);
         }
         document.write(`<br>`);
       }
