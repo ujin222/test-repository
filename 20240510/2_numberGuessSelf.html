@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>혼자서 만드는 숫자 추측 게임</title>
+  </head>
+  <body>
+    <h1>랜덤 숫자 맞춰보세요!</h1>
+    <p>1부터 100까지의 숫자를 입력하세요.</p>
+    <input id="number" type="text" value />
+    <button onclick="clickI()">맞을까요?</button>
+    <p id="answer"></p>
+  </body>
+  <script>
+    // 0. 변수 선언
+    const input = document.querySelector("#number");
+    const pTag = document.querySelector("#answer");
+    let result = "";
+
+    // 1. 우선 랜덤 숫자를 받아야 한다.
+
+    let randNum = 0;
+    function whatNumber() {
+      return parseInt(Math.random() * 100) + 1;
+    }
+    randNum = whatNumber();
+
+    // 2. 게임 기회와 리셋을 만든다.
+
+    let count = 5;
+    const MAX_COUNT = 0;
+
+    function reset() {
+      count = 5;
+      randNum = whatNumber();
+      pTag.innerHTML = "";
+      result = "";
+      input.value = "";
+    }
+
+    // 3. 게임 실행 작업을 만든다.
+    // (입력한 숫자 가져오기, 숫자가 클 때/작을 때, 정답일 때, 실패했을 때)
+
+    //게임 끝났을 때 리셋이 실행되게끔 작업.
+    function clickI() {
+      if (count == MAX_COUNT) {
+        reset();
+        return false;
+      }
+
+      // 사용자가 입력한 숫자 가져오기
+      // const input = document.querySelector('#number'); // 전역변수로 올려주기
+      let inputNum = input.value;
+
+      //정답일 때
+      if (inputNum == randNum) {
+        result = "정답이에요! (≧∇≦)ﾉ"; // result 변수 선언 (텍스트 형식으로)
+        reset();
+      } else {
+        // 입력값 보다 랜덤 숫자가 클 떄, 작을 때
+        count--; // 게임 기회 카운트 시작
+        if (inputNum < randNum) {
+          result = `입력한 숫자보다 커요👍🏻 입력한 숫자는 ${inputNum}, 기회는 ${count}번 남았어요!<br>`;
+        } else {
+          result = `입력한 숫자보다 작아요👎🏻 입력한 숫자는 ${inputNum}, 기회는 ${count}번 남았어요!<br>`;
+        }
+      }
+      pTag.innerHTML += result;
+      // 기회가 끝났을 때
+      if (count == MAX_COUNT) {
+        result = `기회가 끝났어요.. 랜덤 숫자는 ${randNum} 이었습니다! (*>﹏<*)′ `;
+        pTag.innerHTML += result;
+      }
+    }
+  </script>
+</html>
