@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="hello()">인사</button>
+    <button onclick="clickMe()">눌러보세요</button>
+  </body>
+  <script>
+    // 1. 변수 두개를 선언하고 각각 초기값을 3, 4 로 할당하세요.
+
+    let a = 3;
+    let b = 4;
+
+    // 2. 위의 두 변수의 합, 차, 곱, 나누기한 값을 콘솔창에 출력하세요.
+
+    console.log(`a + b = ${a + b}`);
+    console.log(`a - b = ${a - b}`);
+    console.log(`a * b = ${a * b}`);
+    console.log(`a / b = ${a / b}`);
+
+    // 3. 위 문제에서 콘솔창에 출력할 때 결과가 어떤 연산을 했는지를 알 수 있도록
+    // 결과값 왼쪽에 연산 내용을 표시하세요.
+    // ex) a + b
+
+    // 4. 1번에서 선언한 변수 두 개의 대소 비교를 하여 어떤 변수가 큰지를 alert 창으로 출력하세요 (조건문)
+    if (a < b) {
+      alert(`${b}가 ${a}보다 큽니다.`);
+    } else {
+      alert(`${b}가 ${a}보다 작습니다.`);
+    }
+
+    // 5. 비어있는 객체를 하나 생성하세요.
+    // 6. 위에서 만든 객체에 num1 과 num2 라는 프로퍼티를 추가하고, 각각 1번 문제에서 만든 변수를 할당하세요
+    // 7. 위에서 만든 객체의 속성을 콘솔창에 각각 출력하세요.
+    function one(num1, num2) {
+      console.log(`num1: ${num1}, num2 = ${num2}`);
+    }
+    one(a, b);
+
+    // 8. 비어있는 배열을 선언하고 그 배열에 1부터 10까지 숫자를 추가하세요. (선언 이후 값 넣기)
+    const arr = [];
+    arr.push(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    // document.write(`<h2>1부터 10까지: ${arr}</h2>`);
+    console.log(`1부터 10까지: ${arr}`);
+
+    // 9. 비어있는 배열을 선언하고 1 ~ 100 까지의 숫자를 추가하세요 (반복문)
+    const arr2 = [];
+    for (let i = 1; i <= 100; i++) {
+      arr2.push(i);
+    }
+    // document.write(`<h2>1부터 100까지: ${arr2}</h2>`);
+    console.log(`1부터 100까지: ${arr2}`);
+
+    // 10. 비어있는 배열을 선언하고 1 ~ 100 까지의 숫자 중 짝수만 추가하세요. (반복문)
+    const arr3 = [];
+    for (let j = 1; j <= 100; j++) {
+      if (j % 2 == 0) arr3.push(j);
+    }
+    // document.write(`<h2>1부터 100까지 짝수만: ${arr3}</h2>`);
+    console.log(`1부터 100까지 짝수만: ${arr3}`);
+
+    // 11. 함수를 생성하고 함수를 호출하면 '안녕하세요!' 라는 alert 창이 출력되도록 하세요.
+    function hello() {
+      alert("안녕하세요!");
+    }
+
+    // 12. 함수를 호출하면 body 태그에 p 태그를 추가하고 폰트 색상과 배경 색상이 변경된 요소가 출력되는 함수를 작성하세요.
+
+    // function clickMe() {
+    //   const pTag = document.createElement("p");
+    //   body.append(pTag);
+    //   chgColor(pTag);
+    // }
+    // function chgColor(bkcolor) {
+    //   const colorArr = [];
+    //   for (let i = 0; i < 3; i++) {
+    //     const randNum = parseInt(Math.random() * 256);
+    //     colorArr.push(randNum);
+    //   }
+    //   bkcolor.style.backgroundColor = `rgb(${colorArr.toString()})`;
+    //   const luma =
+    //     0.2126 * colorArr[0] + 0.7152 * colorArr[1] + 0.0722 * colorArr[2];
+    //   bkcolor.style.color = luma <= 155 ? "white" : "black";
+    // }
+
+    function clickMe() {
+      const pTag = document.createElement("p");
+      pTag.style.color = "hotpink";
+      pTag.style.backgroundColor = "mistyrose";
+      pTag.innerHTML = "반가워요!";
+      document.querySelector("body").append(pTag);
+    }
+  </script>
+</html>

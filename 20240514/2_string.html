@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>문자열</title>
+  </head>
+  <body></body>
+  <script>
+    // 1. charAt() 함수: 문자열에서 전달받은 인덱스에 위치한 문자나 문자 코드를 반환한다.
+    document.write(`<h1>1. charAt() 함수</h1>`);
+    const str1 = "javascript";
+    document.write(`<h3>0번째 인덱스: ${str1.charAt(0)}</h3>`);
+    document.write(`<h3>5번째 인덱스: ${str1.charAt(5)}</h3>`);
+
+    // 2. indexOf() 함수: 문자열에서 특정 문자나 문자열이 <처음으로> 등장하는 위치(인덱스)를 반환한다.
+    document.write(`<h1>2. indexOf() 함수</h1>`);
+    const str2 = "abcDEFabc";
+    document.write(`<h3>abc가 시작되는 인덱스: ${str2.indexOf("abc")}</h3>`);
+    document.write(`<h3>abcd가 시작되는 인덱스: ${str2.indexOf("abcd")}</h3>`);
+    // 해당 문자열을 찾지 못할 경우 -1이 뜬다. 대소문자도 구별한다.
+    document.write(
+      `<h3>인덱스 3부터 abc가 시작되는 인덱스: ${str2.indexOf("abc", "3")}</h3>`
+    );
+    // 파라미터가 2개일 때는 두번째 파라미터가 탐색의 시작 지점 역할을 한다.
+
+    // 3. lastIndexOf() 함수: 문자열에서 특정 문자나 문자열이 <마지막으로> 등장하는 위치(인덱스)를 반환한다.
+    document.write(`<h1>3. lastIndexOf() 함수</h1>`);
+    document.write(
+      `<h3>abc가 마지막으로 시작되는 인덱스: ${str2.lastIndexOf("abc")}</h3>`
+    );
+
+    // 4. trim() 함수: 문자열의 양끝에 존재하는 모든 공백과 줄바꿈 문자를 제거한 새로운 문자열을 반환한다.
+    document.write(`<h1>4. trim() 함수</h1>`);
+    const str3 = "   j a v a s c r i p t   ";
+    document.write(`<h3>trim 함수로 공백 제거: ${str3.trim()}</h3>`);
+
+    // 5. replayce(), replaceAll() 함수
+    // 문자열에서 파라미터로 전달 받은 문자를 이용하여 기존 문자열의 대체작업을 수행한다.
+    document.write(`<h1>5. replayce(), replaceAll() 함수</h1>`);
+    const str4 = "javaScript is Awesome";
+    document.write(
+      `<h3><replace> S를 *로 대체: ${str4.replace("s", "*")}</h3>`
+    );
+    document.write(
+      `<h3><replaceAll> S를 *로 대체: ${str4.replaceAll("s", "*")}</h3>`
+    );
+    // 대소문자 구별함. All은 해당하는 모든 문자열, 그냥은 해당하는 것 중 처음 딱 하나만
+
+    // 6. substring() 함수
+    // 문자열에서 전달받은 시작 인덱스부터 종료 인덱스 바로 앞까지 문자열을 추출한 새로운 문자열을 반환한다.
+    document.write(`<h1>6. substring() 함수</h1>`);
+    document.write(`<h3>sudstring(2, 6): ${str2.substring(2, 6)}</h3>`);
+    document.write(`<h3>sudstring(4, 8): ${str2.substring(4, 8)}</h3>`);
+    document.write(`<h3>sudstring(3): ${str2.substring(3)}</h3>`);
+
+    // 7. substr() 함수
+    // 문자열에서 전달받은 시작 인덱스부터 길이만큼의 문자열을 추출한 새로운 문자열을 반환한다.
+    document.write(`<h1>6. substr() 함수</h1>`);
+    document.write(`<h3>sudstr(2, 6): ${str2.substr(2, 6)}</h3>`);
+    document.write(`<h3>sudstr(3): ${str2.substr(3)}</h3>`);
+
+    // 8. slice() 함수
+    // 문자열에서 전달받은 시작 인덱스부터 종료 인덱스 바로 앞까지의 문자열을 추출한 새로운 문자열을 반환한다.
+    document.write(`<h1>8. slice() 함수</h1>`);
+    document.write(`<h3>slice(2, 6): ${str2.slice(2, 6)}</h3>`);
+
+    // substring 과 하는 일이 똑같다. 하지만 차이점은 아래에,
+
+    document.write(`<h3>slice(-4, -2): ${str2.slice(-4, -2)}</h3>`);
+    // slice 는 음수를 넣으면 뒤에서부터 순차적으로 -1, -2 ... 적용한다.
+    document.write(`<h3>substring(-4, -2): ${str2.substring(-4, -2)}</h3>`);
+    // substring 은 음수를 0으로 바꿔서 적용한다. => 결과가 안 나옴
+
+    document.write(`<h3>slice(4, 2): ${str2.slice(4, 2)}</h3>`);
+    // slice 는 파라미터 숫자가 바뀌어 있을 떄 결과를 내지 않는다.
+    document.write(`<h3>substring(4, 2): ${str2.substring(4, 2)}</h3>`);
+    // substring 은 파라미터 숫자가 바뀌어 있으면 알아서 변경하여 결과를 낸다.
+
+    // 9. split() 함수
+    // 문자열을 구분자 기준으로 나눈 후, 나뉜 문자열을 배열로 반환한다.
+    document.write(`<h1>9. split() 함수</h1>`);
+    const str5 = "사과+바나나/파인애플/딸기+포도";
+    document.write(`<h3>split 사용: [${str5.split("/")}]</h3>`);
+    document.write(`<h3>split 사용: [${str5.split("+")}]</h3>`);
+  </script>
+</html>
