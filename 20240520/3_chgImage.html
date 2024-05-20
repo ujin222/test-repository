@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이미지 변경</title>
+  </head>
+  <body>
+    <img
+      id="image"
+      src="../resources/img/시나모롤.png"
+      width="500"
+      height="auto"
+    />
+    <br />
+    <button onclick="chgImage()">눌러보세요</button>
+  </body>
+  <script>
+    function chgImage() {
+      // 사진 5장 준비 -> 사진 경로를 배열에 담는다.
+      const cinnamoroll = [
+        "../resources/img/시나모롤2.png",
+        "../resources/img/시나모롤3.png",
+        "../resources/img/시나모롤4.png",
+        "../resources/img/시나모롤5.png",
+        "../resources/img/시나모롤 아가.png",
+      ];
+      // 클릭할 때마다 0 ~ 4 의 랜덤 숫자 뽑는다.
+      const randomArr = parseInt(Math.random() * 5);
+      document.querySelector("#image").src = cinnamoroll[randomArr];
+    }
+  </script>
+</html>

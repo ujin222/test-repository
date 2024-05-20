@@ -7,8 +7,8 @@
   </head>
   <body></body>
   <script>
-    // 1. forEach() 함수
-    // 해당 배열의 모든 요소에 대하여 반복적으로 명시된 함수를 실행한다.
+    // 1. forEach() 함수 ⭐⭐⭐
+    // 해당 배열의 모든 요소에 대하여 반복적으로 명시된 함수를 <실행한다>.
     document.write(`<h1>1. forEach() 함수</h1>`);
     const arr = [1, true, "javascript"];
     function printArr(value, index, array) {
@@ -19,7 +19,7 @@
     // console.log(typeof printArr()); // ()가 있으면 함수를 즉시 실행
 
     // 2. map() 함수 ⭐⭐⭐⭐⭐
-    // 해당 배열의 모든 요소에 대하여 반복적으로 명시된 함수를 실행한 후,
+    // 해당 배열의 모든 요소에 대하여 반복적으로 명시된 함수를 <실행한 후>,
     // 그 실행 결과를 새로운 배열에 담아 반환한다.
     const arr2 = [3, 4, 5, 6];
     const arr3 = [];
@@ -58,7 +58,7 @@
     document.write(`<h3>numberArr: [${numberArr}]</h3>`);
     document.write(`<h3>newNumberArr: [${newNumberArr}]</h3>`);
 
-    document.write(`<h1>연습 시작</h1>`);
+    document.write(`<h1> map() 연습</h1>`);
 
     const doubleArr = [
       [1, 2, 3],
@@ -132,14 +132,88 @@
       [7, 8, 9],
     ];
     // [2, 4, 6] [8, 10, 12] [14, 16, 18]
-    function multiplyTwo(x, y) {
-      let sum = 0;
+    const newDoubleArr = doubleArr2.map(function (x) {
+      const exArr = [];
       for (let i = 0; i < x.length; i++) {
-        sum = x[i] * 2;
+        exArr.push(x[i] * 2);
       }
-      return sum;
-    }
-    const sumArr = doubleArr2.map(multiplyTwo);
-    document.write(`<h3>sumArr: [${sumArr}]</h3>`);
+      return exArr;
+    });
+    console.log(newDoubleArr);
+
+    const newDoubleArr2 = doubleArr2.map(function (y) {
+      return y.map(function (y) {
+        return y * 2;
+      });
+    });
+    console.log(newDoubleArr2);
+
+    // 3. filter() 함수 ⭐⭐⭐⭐
+    // 배열의 모든 요소에 대하여 반복적으로 명시된 함수를 실행한 후,
+    // 그 결과값이 <true 인 요소들만> 새로운 배열로 반환한다.
+    document.write(`<h1>3. filter() 함수</h1>`);
+    const arr11 = [1, 2, 3, 4, 5];
+    // [4, 5]
+    let result = [];
+    // for (let i = 0; i < arr11.length; i++) {
+    //   if (arr11[i] > 3) {
+    //     result.push(arr11[i]);
+    //   }
+    // }
+    // document.write(`<h3>filter(): [${result}]</h3>`);
+
+    result = arr11.filter(function (v) {
+      return v > 3;
+    });
+    document.write(`<h3>filter(): [${result}]</h3>`);
+
+    // filter() 연습
+    const guys = [
+      { name: "덕배", money: 500000 },
+      { name: "베컴", money: 700000 },
+      { name: "홀란드", money: 600000 },
+      { name: "포든", money: 400000 },
+    ];
+    // {name: '베컴', money: 700000}, {name: '홀란드', money: 600000}
+    const manyMoney = guys.filter(function (m) {
+      return m.money > 500000;
+    });
+    console.log(manyMoney);
+
+    // money > 500000, name == '홀란드'
+    const rich = guys.filter(function (r) {
+      return r.money > 500000 && r.name == "홀란드";
+    });
+    console.log(rich);
+
+    // 4. reduce() 함수
+    // 해당 배열의 모든 요소를 하나의 값으로 줄이기 위해, 두 개의 인수를 전달받는 함수를 실행한다.
+    // 이때 명시된 함수에 첫번째 요소와 두번째 요소를 인수로 전달하고 실행한다.
+    // 그 결과 반환된 결과값에 세번째 요소를 다시 인수로 전달하고 실행한다.
+    document.write(`<h1>4. reduce() 함수</h1>`);
+    const arr12 = [1, 2, 3, 4, 5];
+    const result12 = arr12.reduce(function (x, y) {
+      return x + y;
+    });
+    document.write(`<h3>원본배열: [${arr12}]</h3>`);
+    document.write(`<h3>reduce 결과: [${result12}]</h3>`);
+    const result13 = arr12.reduce(function (x, y) {
+      return x - y;
+    });
+    document.write(`<h3>reduce 결과: [${result13}]</h3>`);
+
+    // 1. accmulator : 누산기, 누적기
+    // 2. currentValue : 처리할 현재 요소
+    // 3. currentIndex : 처리할 현재 요소의 인덱스
+    // 4. array : 대상 배열 전체
+    // Array.reduce(function(acc, cur, idx, arr) {
+    // }, initialValue)
+
+    // 5. reduceRight() 함수
+    // reduce() 함수와 같은 방식으로 실행되며, 배열의 마지막 요소부터 줄이기 시작한다.
+    const result14 = arr12.reduceRight(function (x, y) {
+      return x - y;
+    });
+    document.write(`<h3>reduceRight 결과: [${result14}]</h3>`);
   </script>
 </html>
