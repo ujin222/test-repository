@@ -18,15 +18,72 @@
     console.log(students);
 
     // 1. 학생 이름을 대문자로 변환
-    const nameArr = students.map(function (n) {
-      return n.name.toUpperCase();
-    });
-    document.write(`<h3>이름 대문자로 변경: [${nameArr}]</h3>`);
+    // const nameArr = students.map(function (n) {
+    //   return n.name.toUpperCase();
+    // });
+
+    let nameArr = students.map((v) => v.name.toUpperCase());
+    console.log(nameArr);
 
     // 2. 점수가 7점 이상인 학생 필터링
+    // const smart = students.filter(function (s) {
+    //   return s.score > 7;
+    // });
+
+    const smart = students.filter((v) => v.score > 7);
+    console.log(smart);
 
     // 3. 모든 학생의 점수 합계 구하기
+    // const plus = students.reduce(function (x, y) {
+    //   return x + y.score;
+    // }, 0);
+
+    const plus = students.reduce((x, y) => x + y.score, 0);
+    console.log(plus);
 
     // 4. 모든 학생의 평균 점수 구하기 (반올림)
+    const result = Math.round(plus / students.length);
+    console.log(result);
+
+    const products = [
+      { name: "Laptop", price: 899.99 },
+      { name: "Phone", price: 499.99 },
+      { name: "Tablet", price: 299.99 },
+      { name: "Monitor", price: 199.99 },
+      { name: "Keyboard", price: 49.99 },
+      { name: "Mouse", price: 29.99 },
+    ];
+
+    // 1. 모든 제품의 가격에 10%의 세금을 추가한 배열을 만드세요.
+    // const duty = products.map(function (d) {
+    //   d.price = d.price * 1.1;
+    //   return d;
+    // });
+
+    const duty = products.map((v) => {
+      v.price = v.price * 1.1;
+      return v;
+    });
+    console.log(duty);
+
+    // 2. 세금이 추가된 가격이 100달러 이상인 제품들만 필터링하세요.
+    // const expensive = duty.filter(function (e) {
+    //   return e.price >= 100;
+    // });
+
+    const expensive = duty.filter((v) => v.price >= 100);
+    console.log(expensive);
+
+    // 3. 필터링된 제품들의 총 가격을 계산하세요.
+    // const sum = expensive.reduce(function (x, y) {
+    //   return x + y.price;
+    // }, 0);
+
+    const sum = expensive.reduce((x, y) => x + y.price, 0);
+    console.log(sum);
+
+    // 4. 필터링된 제품들의 평균 가격을 계산하세요.
+    const averrage = Math.round(sum / expensive.length);
+    console.log(averrage);
   </script>
 </html>
