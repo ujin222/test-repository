@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/복습/240523_message.css" />
+    <title>메신저 창 복습</title>
+  </head>
+  <body>
+    <img class="background" src="../resources/img/background.png" />
+    <div class="container">
+      <div class="header">
+        <button class="btn">
+          <img src="../resources/img/left-arrow.png" width="30" height="30" />
+        </button>
+        <img
+          class="profile-pic"
+          src="../resources/img/profile.png"
+          width="40"
+          height="40"
+        />
+        <div class="info-block">
+          <p class="username">썸남</p>
+          <p class="status">1시간 전 활동</p>
+        </div>
+        <div class="call-box">
+          <button class="btn">
+            <img src="../resources/img/phone-call.png" width="20" height="20" />
+          </button>
+          <button class="btn">
+            <img src="../resources/img/video-call.png" width="20" height="20" />
+          </button>
+        </div>
+      </div>
+      <div id="chat-box">
+        <div class="bubble friend-bubble">자니?</div>
+        <div class="bubble friend-bubble">왜 자</div>
+        <div class="bubble friend-bubble">일어나</div>
+        <div class="bubble my-bubble">일어났어</div>
+      </div>
+      <div class="footer">
+        <textarea id="input" placeholder="메세지를 입력하세요."></textarea>
+        <button class="btn" id="sendbtn">
+          <img src="../resources/img/send.png" width="24" height="24" />
+        </button>
+      </div>
+    </div>
+  </body>
+  <script>
+    const input = document.querySelector("#input");
+    const send = document.querySelector("#sendbtn");
+    const chatBox = document.querySelector("#chat-box");
+
+    function sendMessage() {
+      const newMessage = input.value;
+      if (newMessage.length == 0) {
+        return false;
+      }
+      let changeMessage = newMessage.replaceAll(" ", "&nbsp;");
+      changeMessage = changeMessage.replaceAll("\n", "<br>");
+      const div = document.createElement("div");
+      div.innerHTML = changeMessage;
+      div.classList.add("bubble", "my-bubble");
+      chatBox.append(div);
+      input.value = "";
+    }
+
+    function Entersend(v) {
+      if (v.code == "Enter" && !v.shiftKey) {
+        sendMessage();
+        v.preventDefault();
+      }
+    }
+    send.addEventListener("click", sendMessage);
+    input.addEventListener("keypress", Entersend);
+  </script>
+</html>
