@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery input</title>
+    <script src="../resources/js/js"></script>
+  </head>
+  <body>
+    <button>이미지 추가</button>
+  </body>
+  <script>
+    const imgArr = [
+      "시나모롤 아가.png",
+      "시나모롤2.png",
+      "시나모롤3.png",
+      "시나모롤4.png",
+      "시나모롤5.png",
+    ];
+
+    $("button").on("click", function () {
+      const randNum = parseInt(Math.random() * 5);
+      const img = $(
+        `<img src="../resources/img/${imgArr[randNum]}"
+        width='200' height='200' />`
+      );
+      img.appendTo("body");
+    });
+  </script>
+</html>

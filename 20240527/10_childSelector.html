@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>자식 선택자</title>
+    <script src="../resources/js/js"></script>
+  </head>
+  <style>
+    ul {
+      border: 3px solid purple;
+      padding: 0;
+      list-style-type: none;
+      width: 500px;
+      border-radius: 10px;
+    }
+    li {
+      border: 2px solid plum;
+      background-color: snow;
+      border-radius: 5px;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 32px;
+    }
+  </style>
+  <body>
+    <ul>
+      <li>one</li>
+      <li>two</li>
+      <li>three</li>
+      <li>four</li>
+      <li>five</li>
+    </ul>
+    <ul>
+      <li>six</li>
+      <li>seven</li>
+      <li>eight</li>
+      <li>nine</li>
+      <li>ten</li>
+    </ul>
+    <ul>
+      <li>eleven</li>
+    </ul>
+  </body>
+  <script>
+    $("li:first-child").css("color", "hotpink");
+    $("li:first").css("color", "plum");
+    $("li:last-child").css("color", "salmon");
+    $("li:last").css("color", "orange");
+    $("li:only-child").css("background", "mistyrose");
+  </script>
+</html>

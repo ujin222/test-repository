@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery Css</title>
+    <script src="../resources/js/js"></script>
+  </head>
+  <script>
+    $(document).ready(function () {
+      // 전체 배경색 변경
+      $("body").css("background", "mistyrose");
+      // h1 요소의 글자색 변경
+      $("h1").css("color", "hotpink");
+      // id 가 smTitle 인 요소의 글자색 변경
+      $("#smTitle").css("color", "pink");
+      // class 가 sample 인 요소의 글자색을 변경
+      $(".sample").css("color", "white");
+    });
+  </script>
+  <body>
+    <h1>제목입니다.</h1>
+    <h2 id="smTitle">작은 제목입니다.</h2>
+    <h2 class="sample">샘플입니다.</h2>
+    <h2 class="sample">샘플입니다.</h2>
+  </body>
+</html>

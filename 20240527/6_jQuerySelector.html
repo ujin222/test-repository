@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>선택자</title>
+    <script src="../resources/js/js"></script>
+  </head>
+  <body>
+    <h2>
+      문단 안에 <a>앵커</a> 태그가 있다. 두번째 <span><a>앵커</a></span> 는
+      자손이다.
+    </h2>
+
+    <hr />
+
+    <p>이 문단은 <span>스팬</span> 요소가 있다.</p>
+    <div>
+      이 div에도 <span>스팬</span> 요소가 있다.
+      <p>div 내부 문단의 <span>스팬</span> 요소이다.</p>
+      <div>
+        <p>
+          내부 div의 다시 문단 속 아주 <strong>깊은 곳에</strong>
+          <em>숨어 있는</em> <span>스팬</span> 요소도 있다.
+        </p>
+      </div>
+    </div>
+
+    <hr />
+
+    <p>형제 선택자에 대하여</p>
+    <h3>꼬마 버스 타요 가족을 소개합니다.</h3>
+    <p>타요</p>
+    <p>로기</p>
+    <div>라니</div>
+    <p>가니</p>
+
+    <hr />
+
+    <p>일반 문단입니다.</p>
+    <p title="text1text2">타이틀을 가진 문단입니다.</p>
+    <p title="text1 text2">타이틀을 가진 문단입니다.</p>
+    <p title="text1">타이틀을 가진 문단입니다.</p>
+  </body>
+  <script>
+    // h2의 자식 a 태그의 테두리 설정 - solid
+    // document.querySelector("h2 > a").style.border = "2px solid red";
+    $("h2 > a").css("border", "2px solid red");
+    // h2의 후손 a 태그의 배경색을 노랑색으로 변경
+    // document.querySelector("h2 span a").style.background = "yellow";
+    $("h2 span a").css("backgroundColor", "yellow");
+
+    // span 태그 배경색 변경
+    $("span").css("backgroundColor", "pink");
+    // div의 모든 후손 중 span 태그의 테두리 설정
+    $("div span").css("border", "2px solid hotpink");
+    // div의 바로 다음 자식 span 태그의 색상 설정
+    $("div > span").css("color", "white");
+
+    // +, ~
+    // h3 의 모든 형제 p 태그의 배경색 변경, 길이 지정, 가운데 정렬
+    $("h3 ~ p")
+      .css("backgroundColor", "pink")
+      .css("width", "200px")
+      .css("text-align", "center");
+    // h3 태그 다음의 첫번째 형제의 글자 굵게, 크게
+    $("h3 + *").css({ fontWeight: "800", fontSize: "20px" });
+
+    // title 속성을 가진 p 태그 배경색 변경
+    $("p[title]").css("backgroundColor", "mistyrose");
+    // title 속성 값이 text2인 p 태그 배경색 변경
+    $("p[title = text2]").css("backgroundColor", "aqua");
+    // title 속성 값이 text1로 시작하는 p 태그 배경색 변경
+    $("p[title ^= text1]").css("backgroundColor", "plum");
+    // title 속성 값이 text1로 끝나는 p 태그 배경색 변경
+    $("p[title $= text1]").css("backgroundColor", "skyblue");
+    // title 속성 값이 text1과 일치 또는 text1- 으로 시작하는 p 태그 폰트색 변경
+    $("p[title |= text1]").css("color", "white");
+    // title 속성 값이 text1t 를 포함하는 p 태그 테두리 변경
+    $("p[title *= text1t]").css("border", "2px dotted hotpink");
+    // title 속성 값이 text1 단어를 포함하는 p 태그 글자굵기 변경
+    $("p[title ~= text1]").css("fontWeight", "900");
+  </script>
+</html>
