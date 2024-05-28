@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>타이핑게임 복습</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("../resources/img/background.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #container {
+      width: 90%;
+      height: 80%;
+      position: relative;
+      /* display: flex;
+    justify-content: center;
+    align-items: flex-start; */
+    }
+    #input {
+      width: 180px;
+      height: 45px;
+      font-size: 16px;
+      padding: 10px;
+      border: none;
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+    }
+    .word {
+      color: white;
+      font-size: 30px;
+      font-weight: 500;
+      position: absolute;
+    }
+    .score {
+      color: white;
+      font-size: 40px;
+      font-weight: 600;
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 15px;
+    }
+  </style>
+  <body>
+    <div id="container">
+      <input id="input" type="text" placeholder="단어를 입력하세요." />
+    </div>
+    <div class="score">score: 0</div>
+  </body>
+  <script>
+    // * 내려올 단어들 생성 *
+    const words = [
+      "DW",
+      "JavaScript",
+      "Dom",
+      "Bom",
+      "document",
+      "window",
+      "Event",
+    ];
+
+    // input 변수 생성 (사용자의 단어 입력)
+    const input = document.querySelector("#input");
+    // 스코어 표시 변수 생성
+    let score = 0;
+    const scorePanel = document.querySelector(".score");
+    // 카운트 변수 생성 (배열의 길이와 같아지면 성공)
+    let count = 0;
+
+    // * 단어 출력될 범위 지정 *
+    const container = document.querySelector("#container");
+    const maxPositionX = container.offsetWidth;
+    const maxPositionY = container.offsetHeight; // 외우기
+
+    // ** 단어 출력 **
+    function init() {
+      // 반복
+      words.forEach(function (el) {
+        // span 태그 생성해서 배열에 있는 단어들 담기 (function 옆 el 이 배열)
+        const span = document.createElement("span");
+        span.innerHTML = el;
+        // css 적용 위해 클래스 넣어주기
+        span.classList.add("word");
+        // id 속성, el(배열과 같게)로 추가 (사용자가 입력한 input 과 같을 때 삭제되기 위해)
+        span.setAttribute("id", el);
+        // 이제 위치를 무작위로 지정 후 container에 추가
+        span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
+        span.style.left = `${Math.floor(Math.random() * maxPositionX)}px`; // 외우기
+        container.append(span);
+      });
+    }
+
+    // * 사용자가 입력한 값과 동일한 id 의 span 태그 삭제 *
+    input.addEventListener("change", function () {
+      // 사용자가 입력한 input.value 와 같은 id 속성 추가하는 변수 만들기
+      const word = document.querySelector(`span[id=${input.value}]`); // 외우기
+      // 입력한 input이 null 이 아니라면 word(words) 삭제
+      if (word != null) {
+        word.remove();
+        // score 오르게 지정, scorePanel에 추가
+        score = score + 100;
+        scorePanel.innerHTML = `score: ${score}`;
+        // count 올라가게 설정 (게임 클리어 조건)
+        count++;
+        if (count == words.length) {
+          alert("클리어!!");
+          // 다시 할건지 물어보고, 새로고침 하는 함수 추가
+          if (confirm("다시??")) {
+            window.location.reload();
+          }
+        }
+      }
+      // input 창 입력할 때마다 비워주기
+      input.value = "";
+    });
+
+    // ** 단어들 내려오게 설정 **
+    function wordRain() {
+      // span 에 넣어줬던 word 클래스 넣어 변수 생성
+      const rain = document.querySelectorAll(".word");
+      // 반복
+      setInterval(function () {
+        // 반복 안에 반복
+        rain.forEach(function (el) {
+          // 점점 내려오는 현상 변수 설정
+          const rectSize = el.getBoundingClientRect();
+          // 위에서 아래로 75px 씩 내려오게 설정
+          el.style.top = `${rectSize.top - 75}px`;
+          if (
+            el.getBoundingClientRect().bottom >
+            container.getBoundingClientRect().bottom -
+              parseInt(getComputedStyle(input).height.split("px")[0]) //외우기
+          ) {
+            // 바닥에 닿으면 사라짐 (점수 x)
+            el.remove();
+          }
+        });
+      }, 1000);
+    }
+
+    // 함수 실행되게 적어주기
+    init();
+    wordRain();
+  </script>
+</html>

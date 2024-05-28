@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>찾기 연습</title>
+    <script src="../resources/js/js"></script>
+  </head>
+  <style>
+    div {
+      border: 3px solid pink;
+    }
+  </style>
+  <body>
+    <div>
+      <p>무궁화 꽃이 피었습니다.</p>
+    </div>
+
+    <p id="pTag">집에 가고 싶당</p>
+
+    <div>
+      <p>사뿐히 즈려 밟고 가시옵소서</p>
+    </div>
+  </body>
+  <script>
+    // // p 태그들에 클릭 이벤트를 달아준다.
+    // $("p").on("click", function () {
+    //   // 선택된 p 태그를 가져온다.
+    //   const pTag = $(this);
+    //   // 선택된 p 태그의 부모 요소를 가져온다.
+    //   const parent = pTag.parent();
+    //   // 부모요소가 div 태그인지 확인한다.
+    //   parent.prop("tagName");
+    //   // 부모요소가 div 태그라면 선택된 p 태그의 텍스트를 가져온다.
+    //   if (parent.is("div")) {
+    //     const text = pTag.text();
+    //     // 새로운 p 태그를 생성하여 부모요소에 추가한다.(폰트색상 변경)
+    //     parent.append(`<p style='color: hotpink;'>${text}</p>`);
+    //   } else {
+    //     // 부모요소가 div 가 아닐 경우에는 alert 창을 띄운다.
+    //     alert("집에 못 가!");
+    //   }
+    // });
+
+    $("div").on("click", "p", function (e) {
+      const pTag = e.target;
+      $(this).parent("div").append($(pTag).clone().css("color", "hotpink"));
+    });
+  </script>
+</html>

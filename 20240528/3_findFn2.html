@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>부모, 자식 찾기 2</title>
+    <script src="../resources/js/js"></script>
+  </head>
+  <style>
+    .wrapper {
+      width: 500px;
+    }
+    .wrapper * {
+      border: 2px solid lightgray;
+      color: lightgray;
+      padding: 5px;
+      margin: 15px;
+      /* list-style-type: none; */
+      display: block;
+    }
+  </style>
+  <body>
+    <div class="wrapper">
+      body div
+      <div>
+        div
+        <ul>
+          ul
+          <li>
+            li
+            <span id="span1">span</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        div
+        <ul>
+          ul
+          <li>
+            li
+            <span id="span2">span</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+  <script>
+    // $("#span1").parent().css({
+    //   color: "red",
+    //   border: "2px solid red",
+    // });
+    // $("#span1").parents('div').css({
+    //     color: "red",
+    //     border: "2px solid red",
+    // });
+    // $("#span1").parentsUntil("div").css({
+    //   color: "red",
+    //   border: "2px solid red",
+    // });
+    // $("#span1").closest("div").css({
+    //   color: "red",
+    //   border: "2px solid red",
+    // });
+
+    // $(".wrapper > div").find("li").css({
+    //   color: "red",
+    //   border: "2px solid red",
+    // });
+
+    // $("#span1").closest("div").next("div").find("span").css({
+    //   border: "2px solid red",
+    //   color: "red",
+    // });
+    $("#span1").closest("div").find("span").css({
+      color: "red",
+      border: "2px solid red",
+    });
+  </script>
+</html>

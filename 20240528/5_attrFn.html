@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>attr 속성</title>
+    <script src="../resources/js/js"></script>
+  </head>
+  <style>
+    div {
+      border: 2px solid blue;
+    }
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+  <body>
+    <div>
+      <img src="../resources/img/시나모롤2.png" />
+      <img src="../resources/img/시나모롤3.png" />
+      <img src="../resources/img/시나모롤4.png" />
+      <img src="../resources/img/시나모롤5.jpg" />
+      <img src="../resources/img/밀크.png" />
+      <br />
+      <button>눌러보세영</button>
+    </div>
+  </body>
+  <script>
+    $("button").on("click", function () {
+      // 1. img 태그 전체 요소를 가져온다.
+      const imgTag = $("img");
+
+      // 2. 전체 태그에 대한 반복문을 실행한다.
+      imgTag.each((i, it) => {
+        // 2-1. 각 요소의 src 속성 값 추출
+        const srcVal = $(it).attr("src");
+        console.log("src");
+      });
+      // 2-2. src 속성 값에서 파일명만 추출
+      const file = srcVal.split("/");
+      const fileName = file[file.length - 1];
+      const finalName = fileName.split(".")[0];
+      // 2-3. 추출한 파일명을 title 속성에 값으로 넣어준다.
+      $(el).attr("title", finalName);
+    });
+  </script>
+</html>

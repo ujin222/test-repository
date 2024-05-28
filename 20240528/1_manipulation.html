@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>조작 관련 함수</title>
+    <script src="../resources/js/js"></script>
+  </head>
+  <style>
+    * {
+      font-size: 32px;
+    }
+    p {
+      cursor: pointer;
+    }
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+  <body>
+    <p>시나모롤</p>
+    <p>밀크</p>
+    <p>푸롱</p>
+    <p>모카</p>
+  </body>
+  <script>
+    const imgArr = ["시나모롤2.png", "밀크.png", "푸롱.png", "모카.jpg"];
+    $("p").on("click", function () {
+      const index = $(this).index();
+
+      // * 요소 내부에 추가 *
+      const imgTag = `<img src='../resources/img/${imgArr[index]}'>`;
+      // $(어디에).append(무엇을) ==> (사진이 $(어디에) 이후에 나타남)
+      //   $(this).append(imgTag);
+
+      // $(무엇을).apppendTo(어디에) ==> (사진이 .appendTo(어디에) 이후에 나타남)
+      //   $(imgTag).appendTo(this);
+
+      // $(어디에).prepend(무엇을) ==>(사진이 $(어디에) 이전에 나타남)
+      //   $(this).prepend(imgTag);
+
+      // $(무엇을).prependTo(어디에) ==> (사진이 .prependTo(어디에) 이전에 나타남)
+      //   $(imgTag).prependTo(this);
+
+      // * 요소 외부에 추가 *
+      //   $(this).after(imgTag); // ==> 사진이 아래에 나타남
+      //   $(imgTag).insertAfter(this);
+      //   $(this).before(imgTag); // ==> 사진이 위에 나타남
+      $(imgTag).insertBefore(this); // ==> 사진이 위에 나타남
+    });
+  </script>
+</html>
