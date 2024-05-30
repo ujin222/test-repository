@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      padding: 0;
+      margin: 0;
+      background-image: url("../resources/img/background.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #container {
+      width: 90%;
+      height: 80%;
+      position: relative;
+    }
+    #input {
+      width: 200px;
+      height: 50px;
+      font-size: 20px;
+      padding: 10px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .score {
+      font-size: 40px;
+      font-weight: 600;
+      color: white;
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 20px;
+    }
+    .word {
+      font-size: 30px;
+      font-weight: 500;
+      position: absolute;
+      color: white;
+    }
+  </style>
+  <body>
+    <div id="container">
+      <input id="input" type="text" placeholder="단어를 입력하세요." />
+    </div>
+    <div class="score">score: 0</div>
+  </body>
+  <script>
+    const words = [
+      "DW",
+      "JavaScript",
+      "Dom",
+      "Bom",
+      "document",
+      "window",
+      "Event",
+    ];
+
+    const input = document.querySelector("#input");
+    let count = 0;
+    let score = 0;
+    const scorePanel = document.querySelector(".score");
+    const container = document.querySelector("#container");
+
+    // 위치 설정
+    const maxWidth = container.offsetWidth - 90;
+    const maxHeight = container.offsetHeight - 110;
+
+    // 단어 나오게 설정
+    function init() {
+      words.forEach(function (el) {
+        const span = document.createElement("span");
+        span.innerHTML = el;
+        span.classList.add("word");
+        span.setAttribute("id", el);
+        span.style.top = `${Math.floor(Math.random() * maxHeight)}px`;
+        span.style.left = `${Math.floor(Math.random() * maxWidth)}px`;
+        container.append(span);
+      });
+    }
+
+    // 단어 내려오게 설정
+    function wordRain() {
+      const rain = document.querySelectorAll(".word");
+      setInterval(function () {
+        rain.forEach(function (el) {
+          const rectSize = el.getBoundingClientRect();
+          el.style.top = `${rectSize.top - 75}px`;
+          if (
+            el.getBoundingClientRect().bottom >
+            container.getBoundingClientRect().bottom -
+              parseInt(getComputedStyle(input).height.split("px")[0])
+          ) {
+            el.remove();
+          }
+        });
+      }, 1000);
+    }
+
+    // 클리어 조건 및 재도전
+    input.addEventListener("change", function () {
+      const word = document.querySelector(`span[id=${input.value}]`);
+      if (word != null) {
+        word.remove();
+        score = score + 100;
+        scorePanel.innerHTML = `score: ${score}`;
+        count++;
+        if (count == words.length) {
+          alert("클리어!!");
+          if (confirm("재도전??")) {
+            window.location.reload();
+          }
+        }
+      }
+      input.value = "";
+    });
+
+    init();
+    wordRain();
+  </script>
+</html>
