@@ -3,6 +3,9 @@ import {
   getFirestore,
   getDocs,
   collection,
+  setDoc,
+  doc,
+  addDoc,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -18,11 +21,35 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-async function getMembers() {
-  const collect = await collection(db, "member");
+async function getDatas(collectionName) {
+  const collect = await collection(db, collectionName);
   const snapshot = await getDocs(collect);
 
   return snapshot;
 }
 
-export { db, getMembers };
+async function addDatas(collectionName, dataObj) {
+  // 문서 id 수동
+
+  //   try {
+  //     const saveDoc = await doc(db, collectionName, "2");
+  //     console.log(`doc() 결과: ${saveDoc}`);
+  //     const saveResult = await setDoc(saveDoc, dataObj);
+  //     console.log(`setDoc() 결과: ${saveResult}`);
+  //     return true;
+  //   } catch (error) {
+  //     return false;
+  //   }
+  // }
+
+  // 문서 id 자동
+  try {
+    const collect = collection(db, collectionName);
+    await addDoc(collect, dataObj);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+export { db, getDatas, addDatas };
