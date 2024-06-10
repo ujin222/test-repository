@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>객체 리마인드</title>
+  </head>
+  <body></body>
+  <script>
+    // 배열 선언
+    let fruits = new Array();
+
+    // 배열을 사용하지 않으면?
+    const apple = "사과";
+    const orange = "오렌지";
+    const strawberry = "딸기";
+
+    fruits = ["사과", "오렌지", "딸기"];
+    console.log(fruits[0]);
+    console.log(fruits[1]);
+    console.log(fruits[2]);
+
+    // 배열 값을 바꿔주고 싶다면?
+    fruits[0] = "포도";
+    console.log(fruits);
+
+    // 배열을 추가하고 싶다면?
+    fruits[3] = "자두"; // 이 방법은 내가 배열의 갯수를 알아야만 가능.
+    console.log(fruits);
+    fruits.push("망고");
+    console.log(fruits);
+
+    // 맨 끝 배열을 제거하고 싶다면?
+    let removedVal = fruits.pop();
+    console.log(removedVal);
+    console.log(fruits);
+
+    // 맨 앞에 배열을 추가하고 싶다면?
+    fruits.unshift("수박");
+    console.log(fruits);
+
+    // 맨 앞 배열을 제거하고 싶다면?
+    removedVal = fruits.shift();
+    console.log(removedVal);
+    console.log(fruits);
+
+    // 순서대로 화면에 출력 (반복문 사용)
+    for (let i = 0; i < fruits.length; i++) {
+      document.write(`<h2>${fruits[i]}</h2>`);
+    }
+
+    // 배열 속 배열
+    let arrayByArray = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+    ];
+
+    // 위 배열 중 숫자 5을 콘솔로 확인하고 싶다면?
+    console.log(arrayByArray[1][1]);
+
+    // 위 숫자들을 각각 화면에 출력하고 싶다면? (반복문 사용)
+    for (let i = 0; i < arrayByArray.length; i++) {
+      for (let j = 0; j < arrayByArray[i].length; j++) {
+        document.write(`<h2>arrayByArray: ${arrayByArray[i][j]}</h2>`);
+      }
+    }
+
+    // 배열에서 인접한 요소의 합이 최대인 부분배열을 찾아보자.
+    let arr = [-1, 2, 3, -9, 11];
+    // -1 부터 시작
+    // -1
+    // -1 + 2
+    // -1 + 2 + 3
+    // -1 + 2 + 3 + (-9)
+    // -1 + 2 + 3 + (-9) + 11
+    // 2 부터 시작
+    // 2 + 3
+    // 2 + 3 + (-9)
+    // 2 + 3 + (-9) + 11
+    // ... 11 부터 시작
+
+    let maxSum = 0;
+    for (let i = 0; i < arr.length; i++) {
+      let sum = 0;
+      for (let j = i; j < arr.length; j++) {
+        sum += arr[j];
+        console.log(sum);
+        maxSum = Math.max(maxSum, sum);
+      }
+    }
+    console.log(`합이 최대인 부분배열: ${maxSum}`);
+
+    // 객체(Object)
+    let obj = new Object();
+    obj = {};
+    obj.name = "홍길동";
+    obj["age"] = 20;
+    document.write(`<h2>이름은 ${obj["name"]}이고, 나이는 ${obj.age}</h2>`);
+    obj.addr = "대전광역시 중구 선화동";
+    obj.tel = "010-1234-5678";
+    let searchVal = prompt(
+      "얻고 싶은 정보를 입력하세요 (name, age, addr, tel)"
+    );
+    document.write(`<h2>${obj[searchVal]}</h2>`);
+
+    // 일반 객체에서 사용할 수 있는 순회 관련 함수
+    // 키 값을 확인할 수 있는 함수 - keys()
+    const keysArr = Object.keys(obj);
+    console.log(keysArr);
+
+    // 프로퍼티 값을 확인할 수 있는 함수 - values()
+    const valuesArr = Object.values(obj);
+    console.log(valuesArr);
+
+    // 키, 값 모두 확인할 수 있는 함수 - entries()
+    const entriesArr = Object.entries(obj);
+    console.log(entriesArr);
+
+    // 객체 함수를 이용하여 숫자 합 구하기
+    let salaries = {
+      john: 200,
+      mary: 250,
+      Sam: 400,
+    };
+    let sum = 0;
+    let salariesArr = Object.values(salaries);
+    // salariesArr.forEach((val) => {
+    //   sum += val;
+    // });
+    // sum = salariesArr.reduce((acc, cur) => acc + cur, 0);
+    sum = Object.values(salaries).reduce((acc, cur) => acc + cur, 0);
+    console.log(sum);
+  </script>
+</html>
