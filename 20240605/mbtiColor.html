@@ -18,7 +18,7 @@
           <h1>MBTI 별<br /><span class="accent">좋아하는 컬러</span></h1>
           <div>
             <span class="filter">
-              <span>INFJ</span>
+              <span>INTJ</span>
               <img class="remove-icon" src="resource/img/x.svg" />
             </span>
           </div>
@@ -37,8 +37,17 @@
     async function getMbtiInfo() {
       const datas = await getDatas("mbtiColor");
       let idx = 1;
+      const arr = [];
       datas.forEach((doc) => {
+        const timestamp = doc._document.createTime.timestamp.seconds;
         const info = doc.data();
+        const newObj = { ...info, timestamp: timestamp };
+        arr.push(newObj);
+      });
+      arr.sort(function (a, b) {
+        return a.timestamp - b.timestamp;
+      });
+      arr.forEach((info) => {
         items.insertAdjacentHTML(
           "afterbegin",
           `
@@ -91,7 +100,7 @@
     //         <div class="item-id">${idx + 1}</div>
     //         <div class="item-mbti">${info.mbti}</div>
     //         <div class="item-arrow">
-    //             <img class="item-arrow-icon" src="resources/img/arrow.svg" />
+    //             <img class="item-arrow-icon" src="resource/img/arrow.svg" />
     //         </div>
     //         <div
     //             class="item-color-chip"
