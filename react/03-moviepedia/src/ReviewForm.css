@@ -1,0 +1,16 @@
+.ReviewForm {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 20px;
+  padding: 10px 0;
+  /* width: 200px; */
+}
+.ReviewForm .form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-grow: 1;
+}
+.ReviewForm .form-container textarea {
+  flex-grow: 1;
+}
