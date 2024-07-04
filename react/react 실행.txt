@@ -1,0 +1,34 @@
+
+
+node.js 설치
+버전 확인 후 설치
+
+vs code "ctrl `" 눌러서  node -v 해보고 적용되나 확인
+
+cd react
+npm install
+버그나면 npm install -g npx
+
+
+새로운 react 만들 때
+npx create-react-app 파일명
+
+만들어진 파일에서
+필요 없는 것들 삭제 (public 에서 index 제외한 모든 것 삭제) 
+App.js 파일 변경
+index 파일 변경
+assets 파일 만들어 리소스 담기
+
+파일 웹으로 열 때
+cd 파일명 -> npm run start
+
+js 자동완성
+rsf
+
+
+firebase 설치하려면
+프로젝트 파일에 npm install firebase
+이후 package.json "firebase: 10.6.0" 으로 변경
+
+다른 pc에서 커밋하면 모듈이 사라짐.
+파일 불러와서 npm install 해서 모듈 가져오기

@@ -1,0 +1,21 @@
+useState 내부구조
+let value;
+function useState(initialValue) {
+  if(value === undefined) {
+    value = initialValue;
+  }
+  const setState = (newValue) => {
+    value = newValue;
+  };
+  return [value, setState];
+}
+
+// setState 함수는 새로운 값을 생성하는게 주 목적이 아님. 화면을 재랜더링 하는것이 주 목적
+
+function State(props) {
+  const [state, setState] = useState(0);
+
+  const onClickHandler = () => {
+    console.log('click!!');
+  };
+}
