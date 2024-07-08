@@ -4,8 +4,8 @@ import "./FileInput.css";
 import resetImg from "./assets/ic-reset.png";
 import { initializeApp } from "firebase/app";
 
-function FileInput({ inputName, setFile, value }) {
-  const [preview, setPreview] = useState();
+function FileInput({ inputName, setFile, value, initialPreview }) {
+  const [preview, setPreview] = useState(initialPreview);
   // hook
   const inputRef = useRef();
 
@@ -20,7 +20,7 @@ function FileInput({ inputName, setFile, value }) {
   const handleClearClick = () => {
     const inputNode = inputRef;
     // console.log(inputNode);
-    inputNode.current.value = "";
+    // inputNode.current.value = "";
     setFile(inputName, null);
   };
 
@@ -49,7 +49,10 @@ function FileInput({ inputName, setFile, value }) {
 
   return (
     <div className="FileInput">
-      <img className="FileInput-preview" src={preview || placeholderImg} />
+      <img
+        className={`FileInput-preview ${preview ? "selected" : ""}`}
+        src={preview || placeholderImg}
+      />
       <input
         className="FileInput-hidden-overlay"
         type="file"
