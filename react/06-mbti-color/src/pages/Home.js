@@ -1,19 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Home.module.css";
 import { Link } from "react-router-dom";
 import ColorSurvey from "./../components/ColorSurvey";
-import Mock from "../lib/mock.json";
+import mockItems from "../lib/mock.json";
+import { getAllDatas } from "../lib/firebase";
 
 function Home(props) {
   //   console.log(styles);
-  const [contents, setContents] = useState([]);
-  const mock = <mock />;
-  const getMbti = async () => {
-    const Mock = await fetch(mock);
-    const data = await Mock.json();
-    const mbtiArr = data.data.contents;
-    console.log(mbtiArr);
+  // const [contents, setContents] = useState([]);
+  // const Mock = <mock />;
+  // const getMbti = async () => {
+  //   const mockItem = await fetch(Mock);
+  //   const data = await mockItem.json();
+  //   const mbtiArr = data.data.contents;
+  //   console.log(mbtiArr);
+  //   setContents(mbtiArr);
+
+  const [items, setItems] = useState([]);
+  const handleLoad = async () => {
+    // 파이어베이스에서 데이터 가져오기
+    const resultData = await getAllDatas("mbtiColor", "id");
+    // items state에 셋팅
+    setItems(resultData);
   };
+
+  useEffect(() => {
+    handleLoad();
+    setItems(mockItems);
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.headerContainer}>
@@ -34,9 +49,10 @@ function Home(props) {
         <Link className={styles.addItem} to="/new">
           + 새 컬러 등록하기
         </Link>
-        {}
         <ul className={styles.items}>
-          <ColorSurvey />
+          {items.map((item, idx) => {
+            return <ColorSurvey key={idx} mbtiData={item} />;
+          })}
         </ul>
       </main>
     </div>

@@ -8,14 +8,14 @@
   position: sticky;
   top: 80px;
   background-color: #f5f7fb;
-  padding: 80px 40px;
+  padding: 80px 30px;
   border-radius: 80px;
   color: #464e5e;
   text-align: right;
 }
 .header > h1 {
   font-weight: 400;
-  font-size: 40px;
+  font-size: 36px;
   margin-top: 0;
   margin-bottom: 32px;
 }
