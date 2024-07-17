@@ -4,7 +4,7 @@ import ListPages from "../components/ListPages";
 function QuestionListPage(props) {
   return (
     <div>
-      <ListPages></ListPages>
+      <ListPages variant="community"></ListPages>
     </div>
   );
 }
