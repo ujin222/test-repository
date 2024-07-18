@@ -10,3 +10,11 @@
   border-radius: 5px;
   position: relative;
 }
+.button.round {
+  padding: 9px 22px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+  background-color: #494949;
+  border-radius: 9999px;
+}
