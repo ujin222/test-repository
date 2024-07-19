@@ -37,6 +37,7 @@
 }
 .emptyList {
   display: flex;
+  flex-direction: column;
 }
 .count {
   margin: 20px 0;

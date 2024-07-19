@@ -4,7 +4,7 @@ import CourseIcon from "../components/CourseIcon";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Card from "../components/Card";
 import getCourseColor from "../utils/getCourseColor";
-import { getData } from "../api/firebase";
+import { getData, updateDatas } from "../api/firebase";
 import styles from "./CoursePage.module.css";
 import Button from "../components/Button";
 
@@ -31,11 +31,20 @@ function CoursePage() {
     setCourse(resultData);
   };
 
-  const handleAddWishlistClick = () => {
+  const handleAddWishlistClick = async () => {
     // 귀찮아도 함수로 만들어서 쓰기 ^^
     const member = JSON.parse(localStorage.getItem("member"));
 
     if (member) {
+      const result = await updateDatas("member", member.docId, course, {
+        type: "ADD",
+        fieldName: "courseList",
+      });
+      if (result) {
+        navigate("/wishlist");
+      } else {
+        alert("코스 담기 오류 \n관리자에게 문의하세요.");
+      }
     } else {
       alert("로그인을 해주세요.");
       navigate("/login", { state: pathname });

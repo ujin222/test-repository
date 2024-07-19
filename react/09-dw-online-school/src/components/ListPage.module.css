@@ -5,10 +5,13 @@
   align-items: center;
 }
 .bg.catalog {
-  background-color: #ebebeb;
+  background-color: rgba(238, 187, 238, 0.733);
 }
 .bg.community {
   background-color: #73bfad;
+}
+.bg.join {
+  background-color: #ebebeb;
 }
 .icon {
   height: 44px;

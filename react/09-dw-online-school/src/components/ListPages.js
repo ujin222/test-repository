@@ -4,6 +4,7 @@ import styles from "./ListPage.module.css";
 import cn from "classnames";
 import catalogImg from "../assets/catalog.svg";
 import communityImg from "../assets/community.svg";
+import joinImg from "../assets/icon--join.png";
 
 const dataDict = {
   catalog: {
@@ -15,6 +16,11 @@ const dataDict = {
     src: communityImg,
     title: "커뮤니티",
     description: "DW온라인스쿨의 2만 수강생들과 함께 공부해봐요",
+  },
+  join: {
+    src: joinImg,
+    title: "회원가입",
+    description: "회원가입 서비스입니다.",
   },
 };
 
