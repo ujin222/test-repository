@@ -1,0 +1,40 @@
+.header {
+  padding: 39px 0 33px;
+  background-color: #fff;
+}
+.count {
+  margin: 22px 30px 18px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #878787;
+}
+.question {
+  padding: 0 30px;
+}
+.questionInfo {
+  display: flex;
+}
+.questionInfo .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 18px 0;
+}
+.questionInfo .author {
+  flex: none;
+}
+.questionInfo .title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #494949;
+}
+.questionInfo .title .count {
+  margin-left: 5px;
+  color: #f292ab;
+}
+.questionInfo .date {
+  font-size: 12px;
+  font-weight: 500;
+  color: #c4c4c4;
+}

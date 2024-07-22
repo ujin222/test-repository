@@ -1,0 +1,12 @@
+.answerItem {
+  padding: 30px;
+}
+.answerInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.answerInfo .date {
+  align-self: flex-end;
+  color: #c4c4c4;
+}

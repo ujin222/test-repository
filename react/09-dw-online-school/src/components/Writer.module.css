@@ -1,0 +1,14 @@
+.writer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.writer .name {
+  padding: 4px 0;
+}
+.writer .level {
+  font-size: 12px;
+  margin-left: 2px;
+  color: #c4c4c4;
+}

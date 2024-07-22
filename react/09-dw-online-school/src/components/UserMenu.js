@@ -37,9 +37,6 @@ function UserMenu(props) {
               <Link to="/login">
                 <li>로그인</li>
               </Link>
-              <Link to="/join">
-                <li>회원가입</li>
-              </Link>
             </>
           ) : (
             <>
