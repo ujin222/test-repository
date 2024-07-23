@@ -1,0 +1,57 @@
+.FoodListItem {
+  display: flex;
+  max-height: 150px;
+  gap: 15px;
+}
+.FoodListItem-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+.FoodListItem-rows {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.FoodListItem-title-calorie {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.FoodListItem-title {
+  font-size: 20px;
+  margin: 0;
+}
+.FoodListItem-calorie {
+  font-size: 12px;
+  background-color: #e2e2e2;
+  padding: 4px 7px;
+  border-radius: 6px;
+}
+.FoodListItem-content {
+  font-size: 16px;
+  padding: 4px;
+}
+.FoodListItem-date-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.FoodListItem-date {
+  font-size: 14px;
+}
+.FoodListItem-button {
+  display: flex;
+  gap: 5px;
+}
+.FoodListItem-edit-button,
+.FoodListItem-delete-button {
+  padding: 6px 10px;
+  background-color: transparent;
+  border: 1px solid #e2e2e2;
+  border-radius: 5px;
+  font-size: 12px;
+}
