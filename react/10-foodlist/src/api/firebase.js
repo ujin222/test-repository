@@ -13,6 +13,7 @@ import {
   orderBy,
   limit,
   startAfter,
+  where,
 } from "firebase/firestore";
 import {
   deleteObject,
@@ -45,20 +46,22 @@ function createPath(path) {
 }
 
 async function addDatas(collectionName, addObj) {
-  // 파일 저장 ==> 스토리지의 imgUrl 을 addObj 의 imgUrl 값으로 변경
-  const path = createPath("food/");
+  // 파일 저장 ==> 스토리지의 이미지 url을 addObj의 imgUrl 값으로 변경
+  const path = createPath("foodit/");
   const url = await uploadImage(path, addObj.imgUrl);
   addObj.imgUrl = url;
+
   // id 생성
   const lastId = (await getLastNum(collectionName, "id")) + 1;
   addObj.id = lastId;
+
   // 시간 정보 생성
   const time = new Date().getTime();
   addObj.createdAt = time;
-  addObj.updateAt = time;
+  addObj.updatedAt = time;
 
   // 컬렉션에 저장
-  await addDoc(getCollection(collectionName, addObj));
+  await addDoc(getCollection(collectionName), addObj);
 }
 
 async function uploadImage(path, file) {
@@ -75,13 +78,54 @@ async function uploadImage(path, file) {
 
 async function getLastNum(collectionName, field) {
   const q = query(
-    getCollection(collectionName),
+    getCollection(collectionName), // collection
     orderBy(field, "desc"), // 정렬할 필드로 내림차순
-    limit(1) // 1개만 가져온다는 뜻
+    limit(1) // 1개만 가져온다
   );
   const lastDoc = await getDocs(q);
   const lastId = lastDoc.docs[0].data()[field];
   return lastId;
 }
 
-export { addDatas };
+// limit에 지정한 숫자만큼만 컨텐츠를 보여줌
+async function getDatasOrderByLimit(collectionName, options) {
+  const { fieldName, limits } = options;
+  let q;
+  if (!options.lq) {
+    q = query(
+      getCollection(collectionName),
+      orderBy(fieldName, "desc"),
+      limit(limits)
+    );
+  } else {
+    q = query(
+      getCollection(collectionName),
+      orderBy(fieldName, "desc"),
+      startAfter(options.lq),
+      limit(limits)
+    );
+  }
+
+  const snapshot = await getDocs(q);
+  const docs = snapshot.docs;
+  const lastQuery = docs[docs.length - 1];
+  const resultData = docs.map(function (doc) {
+    return { ...doc.data(), docId: doc.id };
+  });
+  return { resultData, lastQuery };
+}
+
+// async function getDatasByOrder(collectionName, options) {
+//   const q = query(
+//     getCollection(collectionName),
+//     orderBy(options.order, "desc")
+//   );
+//   const snapshot = await getDocs(q);
+//   const resultData = snapshot.docs.map((doc) => ({
+//     ...doc.data(),
+//     docId: doc.id,
+//   }));
+//   return resultData;
+// }
+
+export { addDatas, getDatasOrderByLimit };

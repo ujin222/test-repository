@@ -1,7 +1,7 @@
 .FoodForm {
   display: flex;
   max-height: 150px;
-  gap: 10px;
+  gap: 20px;
 }
 .FoodForm .FoodForm-preview {
   flex: none;
@@ -31,7 +31,7 @@
   color: #fff;
   background-color: #2c9631;
 }
-.FoodForm-cancle-button {
+.FoodForm-cancel-button {
   color: #000;
   background-color: #f9f9f9;
 }

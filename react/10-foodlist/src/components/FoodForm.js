@@ -31,10 +31,9 @@ function FoodForm(props) {
     handleChange(name, sanitize(type, value));
   };
   const handleSubmit = async (e) => {
-    e.preventDefalt();
-    const resultData = await addDatas();
+    e.preventDefault();
+    const resultData = await addDatas("foodit", values);
   };
-
   return (
     <form className="FoodForm" onSubmit={handleSubmit}>
       <FileInput

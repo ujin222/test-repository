@@ -3,10 +3,60 @@ import backgroundImg from "../assets/background.png";
 import logoImg from "../assets/logo.png";
 import logoTextImg from "../assets/logo-text.png";
 import FoodForm from "./FoodForm";
-import searchImg from "../assets/ic-search.png";
 import FoodList from "./FoodList";
+import searchImg from "../assets/ic-search.png";
+import { useEffect, useState } from "react";
+import { getDatasOrderByLimit, getDatasByOrder } from "../api/firebase";
+
+const LIMITS = 5;
+
+function AppSortButton({ children, selected, onClick }) {
+  return (
+    <button
+      className={`AppSortButton ${selected ? "selected" : ""}`}
+      onClick={onClick}
+      disabled={selected}
+    >
+      {children}
+    </button>
+  );
+}
 
 function App() {
+  const [items, setItems] = useState([]);
+  const [order, setOrder] = useState("createdAt");
+  const [lq, setLq] = useState();
+  const [hasNext, setHasNext] = useState(true);
+
+  const handleLoad = async (options) => {
+    const { resultData, lastQuery } = await getDatasOrderByLimit(
+      "foodit",
+      options
+    );
+    if (!options.lq) {
+      setItems(resultData);
+    } else {
+      setItems((prevItems) => [...prevItems, ...resultData]);
+    }
+    setLq(lastQuery);
+    if (!lastQuery) {
+      setHasNext(false);
+    }
+  };
+
+  // 최신순, 칼로리순
+  const handleNewestClick = () => setOrder("createdAt");
+  const handleCalorieClick = () => setOrder("calorie");
+
+  // 더보기
+  const handleMoreClick = async () => {
+    handleLoad({ fieldName: order, limits: LIMITS, lq: lq });
+  };
+
+  useEffect(() => {
+    handleLoad({ fieldName: order, limits: LIMITS });
+  }, [order]);
+
   return (
     <div className="App" style={{ backgroundImage: `url(${backgroundImg})` }}>
       <div className="App-nav">
@@ -17,17 +67,33 @@ function App() {
           <FoodForm />
         </div>
         <div className="App-filter">
-          <input type="text" />
-          <img src={searchImg} />
-          <div className="App-sort">
-            <button>최신순</button>
-            <button>칼로리순</button>
+          <form className="App-search">
+            <input className="App-search-input" />
+            <button className="App-search-button">
+              <img src={searchImg} />
+            </button>
+          </form>
+          <div className="App-orders">
+            <AppSortButton
+              selected={order === "createdAt"}
+              onClick={handleNewestClick}
+            >
+              최신순
+            </AppSortButton>
+            <AppSortButton
+              selected={order === "calorie"}
+              onClick={handleCalorieClick}
+            >
+              칼로리순
+            </AppSortButton>
           </div>
         </div>
-        <div className="App-FoodList">
-          <FoodList />
-        </div>
-        <button>더 보기</button>
+        <FoodList items={items} />
+        {hasNext && (
+          <button className="App-more-button" onClick={handleMoreClick}>
+            더 보기
+          </button>
+        )}
       </div>
       <div className="App-footer">
         <div className="App-footer-container">
