@@ -5,8 +5,8 @@ import { addDatas } from "../api/firebase";
 
 const INITIAL_VALUES = {
   title: "",
-  content: "",
   calorie: 0,
+  content: "",
   imgUrl: null,
 };
 
@@ -20,8 +20,16 @@ function sanitize(type, value) {
   }
 }
 
-function FoodForm(props) {
-  const [values, setValues] = useState(INITIAL_VALUES);
+function FoodForm({
+  onSubmit,
+  onSubmitSuccess,
+  initialPreview,
+  initialValues = INITIAL_VALUES,
+  onCancel,
+}) {
+  const [values, setValues] = useState(initialValues);
+  // 확인 버튼 돌아가는 도중에 더 누르지 못하게
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (name, value) => {
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
@@ -30,9 +38,15 @@ function FoodForm(props) {
     const { name, value, type } = e.target;
     handleChange(name, sanitize(type, value));
   };
+  // 확인 누르면 바로 화면에 출력되게끔
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const resultData = await addDatas("foodit", values);
+
+    setIsSubmitting(true);
+    const resultData = await onSubmit("foodit", values);
+    onSubmitSuccess(resultData);
+    setIsSubmitting(false);
+    setValues(INITIAL_VALUES);
   };
   return (
     <form className="FoodForm" onSubmit={handleSubmit}>
@@ -41,6 +55,7 @@ function FoodForm(props) {
         onChange={handleChange}
         name="imgUrl"
         value={values.imgUrl}
+        initialPreview={initialPreview}
       />
       <div className="FoodForm-rows">
         <div className="FoodForm-title-calorie">
@@ -59,7 +74,21 @@ function FoodForm(props) {
             name="calorie"
             value={values.calorie}
           />
-          <button className="FoodForm-submit-button" type="submit">
+          {onCancel && (
+            <button
+              className="FoodForm-cancel-button"
+              type="button"
+              onClick={() => onCancel(null)}
+            >
+              취소
+            </button>
+          )}
+
+          <button
+            className="FoodForm-submit-button"
+            type="submit"
+            disabled={isSubmitting}
+          >
             확인
           </button>
         </div>
