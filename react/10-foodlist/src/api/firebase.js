@@ -13,6 +13,7 @@ import {
   orderBy,
   limit,
   startAfter,
+  where,
 } from "firebase/firestore";
 import {
   deleteObject,
@@ -42,16 +43,6 @@ function getCollection(collectionName) {
 function createPath(path) {
   const uuid = crypto.randomUUID();
   return path + uuid;
-}
-
-async function getDatas(collectionName) {
-  const collect = getCollection(collectionName);
-  const snapshot = await getDocs(collect);
-  const resultData = snapshot.docs.map((doc) => ({
-    ...doc.data(),
-    docId: doc.id,
-  }));
-  return resultData;
 }
 
 async function addDatas(collectionName, addObj) {
@@ -206,19 +197,43 @@ async function updateDatas(collectionName, dataObj, docId) {
     const deleteImg = ref(storage, prevImgUrl);
     await deleteObject(deleteImg);
     // 새로운 사진 추가
-    const uuid = crypto.randomUUID();
-    const path = `foodit/${uuid}`;
-    const url = await uploadImage(path, dataObj.imgUrl);
+    // const uuid = crypto.randomUUID();
+    // const path = `foodit/${uuid}`;
+    // const url = await uploadImage(path, dataObj.imgUrl);
+    const url = await uploadImage(createPath("foodit/", dataObj.imgUrl));
     dataObj.imgUrl = url;
   } else {
     // imgUrl 프로퍼티 삭제. 이거 삭제 왜 하는데?
+    // 수정 from 에서 imgUrl 기본값을 null 로 넣어줬기 때문에 사진을 수정하지 않고
+    // 그 상태로 문서를 업데이트 하면 imgUrl 값이 null 로 바뀜.
     delete dataObj["imgUrl"];
+    // ※ 사진 수정 안 하고 다른 것만 수정 했을 경우
   }
-  // 사진 수정 안 하고 다른 것만 수정 했을 경우
+  // 문서 부분 수정
   await updateDoc(docRef, dataObj);
   const updateItem = await getDoc(docRef);
   const resultData = { docId: updateItem.id, ...updateItem.data() };
   return resultData;
 }
 
-export { addDatas, getDatasOrderByLimit, deleteDatas, updateDatas, getDatas };
+// 검색
+async function getSearchDatas(collectionName, options) {
+  const q = query(
+    getCollection(collectionName),
+    where("title", ">=", options.search),
+    where("title", "<=", options.search + "\uf8ff"),
+    limit(options.limits)
+  );
+  const snapshot = await getDocs(q);
+  const docs = snapshot.docs;
+  const resultData = docs.map((doc) => ({ ...doc.data(), docId: doc.Id }));
+  return resultData;
+}
+
+export {
+  addDatas,
+  getDatasOrderByLimit,
+  deleteDatas,
+  updateDatas,
+  getSearchDatas,
+};

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./FoodList.css";
 import FoodForm from "./FoodForm";
+import useTranslate from "../hooks/useTranslate";
 
 function formatDate(value) {
   const date = new Date(value);
@@ -9,6 +10,7 @@ function formatDate(value) {
 
 function FoodListItem({ item, onDelete, onEdit }) {
   const { imgUrl, title, calorie, content, createdAt, docId, id } = item;
+  const t = useTranslate();
 
   const handleEditClick = () => {
     onEdit(id);
@@ -34,13 +36,13 @@ function FoodListItem({ item, onDelete, onEdit }) {
               className="FoodListItem-edit-button"
               onClick={handleEditClick}
             >
-              수정
+              {t("edit button")}
             </button>
             <button
               className="FoodListItem-delete-button"
               onClick={handleDeleteClick}
             >
-              삭제
+              {t("delete button")}
             </button>
           </div>
         </div>
@@ -68,7 +70,7 @@ function FoodList({ items, onDelete, onUpdate, onUpdateSuccess }) {
             setEditingId(null);
           };
           return (
-            <li key={item.Id}>
+            <li key={item.docId}>
               <FoodForm
                 onCancel={setEditingId}
                 onSubmit={handleSubmit}
@@ -80,7 +82,7 @@ function FoodList({ items, onDelete, onUpdate, onUpdateSuccess }) {
           );
         }
         return (
-          <li key={item.id}>
+          <li key={item.docId}>
             <FoodListItem
               item={item}
               onDelete={onDelete}

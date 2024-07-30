@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "firebase": "^10.12.2",
-    "styled-components": "^6.1.11"
-  }
-}

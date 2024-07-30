@@ -12,7 +12,10 @@ import {
   addDatas,
   updateDatas,
   getDatas,
+  getSearchDatas,
 } from "../api/firebase";
+import LocaleSelect from "./LocaleSelect";
+import useTranslate from "../hooks/useTranslate";
 
 const LIMITS = 5;
 let listItems;
@@ -35,7 +38,7 @@ function App() {
   const [lq, setLq] = useState();
   const [hasNext, setHasNext] = useState(true);
   const [search, setSearch] = useState([]);
-  const [keyword, setKeyword] = useState("");
+  const t = useTranslate();
 
   const handleLoad = async (options) => {
     const { resultData, lastQuery } = await getDatasOrderByLimit(
@@ -113,31 +116,26 @@ function App() {
     });
   };
 
-  // 검색 기능
-  const handleSearch = async (e) => {
-    // firebase의 courses 데이터 가져오기
-    const resuleData = await getDatas("foodit");
-    // 전체데이터 변수에 저장
-    listItems = resuleData;
-    // items state에 set 해주기
-    setSearch(resuleData);
-  };
-
-  const handleSearchInput = (e) => {
-    setKeyword(e.target.value);
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
   };
 
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
-    setSearch(listItems.filter(({ title }) => title.includes(keyword)));
+    if (search === "") {
+      handleLoad({ fieldName: order, limits: LIMITS, lq: undefined });
+    } else {
+      const resultData = await getSearchDatas("foodit", {
+        limits: LIMITS,
+        search: search,
+      });
+      setItems(resultData);
+    }
   };
 
   useEffect(() => {
     handleLoad({ fieldName: order, limits: LIMITS, lq: undefined });
   }, [order]);
-  useEffect(() => {
-    handleSearch();
-  }, []);
 
   return (
     <div className="App" style={{ backgroundImage: `url(${backgroundImg})` }}>
@@ -150,7 +148,7 @@ function App() {
         </div>
         <div className="App-filter">
           <form className="App-search" onSubmit={handleSearchSubmit}>
-            <input className="App-search-input" onChange={handleSearchInput} />
+            <input className="App-search-input" onChange={handleSearchChange} />
             <button className="App-search-button">
               <img src={searchImg} />
             </button>
@@ -160,13 +158,13 @@ function App() {
               selected={order === "createdAt"}
               onClick={handleNewestClick}
             >
-              최신순
+              {t("newest")}
             </AppSortButton>
             <AppSortButton
               selected={order === "calorie"}
               onClick={handleCalorieClick}
             >
-              칼로리순
+              {t("calories")}
             </AppSortButton>
           </div>
         </div>
@@ -178,19 +176,16 @@ function App() {
         />
         {hasNext && (
           <button className="App-more-button" onClick={handleMoreClick}>
-            더 보기
+            {t("load more")}
           </button>
         )}
       </div>
       <div className="App-footer">
         <div className="App-footer-container">
           <img src={logoTextImg} />
-          <select>
-            <option>한국어</option>
-            <option>English</option>
-          </select>
+          <LocaleSelect />
           <div className="App-footer-menu">
-            서비스 이용약관 | 개인정보 처리방침
+            {t("terms od service")} | {t("privary policy")}
           </div>
         </div>
       </div>
