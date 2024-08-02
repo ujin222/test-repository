@@ -4,14 +4,17 @@ import {
   getFirestore,
   collection,
   addDoc,
-  getDoc,
   query,
   orderBy,
   limit,
   onSnapshot,
   where,
-  getDocs,
+  getDoc,
   runTransaction,
+  getDocs,
+  updateDoc,
+  doc,
+  deleteDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -36,7 +39,6 @@ function getUserAuth() {
   return auth;
 }
 
-// 파이어베이스 등록 시 id를 정하기 위한 마지막 데이터를 가져오기
 async function getLastNum(collectionName, field) {
   const q = query(
     collection(db, collectionName),
@@ -51,25 +53,76 @@ async function getLastNum(collectionName, field) {
   return lastNum;
 }
 
-async function addDatas(collectionName, addObj) {
+function getQuery(collectionName, queryOption) {
+  const { conditions = [], orderBys = [], limits } = queryOption;
+  const collect = getCollection(collectionName);
+  let q = query(collect);
+
+  const condition = [
+    { field: "text", operator: "==", value: "test" },
+    { field: "uid", operator: "==", value: "xjdiwjKDJ2jdkxJND2J" },
+  ];
+
+  // where 조건
+  conditions.forEach((condition) => {
+    q = query(q, where(condition.field, condition.operator, condition.value));
+  });
+
+  // orderBy 조건
+  orderBys.forEach((order) => {
+    q = query(q, orderBy(order.field, order.direction || "asc"));
+  });
+
+  // limit 조건
+  q = query(q, limit(limits));
+
+  return q;
+}
+
+export async function addDatas(collectionName, addObj) {
   try {
-    // runTransaction() 은 사용자 여러명이 동시에 등록을 눌렀을 때, id가 순차적으로 들어가게 하기 위해 사용하는 함수.
     const resultData = await runTransaction(db, async (tr) => {
-      // ( 마지막 데이터 id + 1 ==> 새 데이터 id)
       const lastId = (await getLastNum(collectionName, "id")) + 1;
       addObj.id = lastId;
       const docRef = await addDoc(getCollection(collectionName), addObj);
       const snapshot = await getDoc(docRef);
       const docData = snapshot.exists()
-        ? { ...snapshot.data(), docid: snapshot.id }
+        ? { ...snapshot.data(), docId: snapshot.id }
         : null;
       return docData;
     });
-
     return resultData;
   } catch (error) {
-    console.log("Error transaction: error");
+    console.log("Error transaction: ", error);
   }
 }
 
-export { getUserAuth, addDatas };
+export async function getDatas(collectionName, queryOptions) {
+  const q = getQuery(collectionName, queryOptions);
+  const snapshot = await getDocs(q);
+  const docs = snapshot.docs;
+  const resultData = docs.map((doc) => ({ ...doc.data(), docId: doc.id }));
+  return resultData;
+}
+
+export async function updateDatas(collectionName, docId, updateObj) {
+  try {
+    const docRef = doc(db, collectionName, docId);
+    await updateDoc(docRef, updateObj);
+    const snapshot = await getDoc(docRef);
+    const resultData = { ...snapshot.data(), docId: snapshot.id };
+    return resultData;
+  } catch (error) {
+    console.log("Error Update: ", error);
+  }
+}
+
+export async function deleteDatas(collectionName, docId) {
+  try {
+    const docRef = doc(db, collectionName, docId);
+    await deleteDoc(docRef);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}

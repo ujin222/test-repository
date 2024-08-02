@@ -1,8 +1,8 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import Button from "./Button";
-import EmotionItem from "./EmotionItem";
 import { emotionList } from "../util/emotion";
+import EmotionItem from "./EmotionItem";
 import "./DiaryEditor.css";
 import { DiaryDispatchContext } from "../App";
 import { useNavigate } from "react-router-dom";
@@ -10,46 +10,73 @@ import { useNavigate } from "react-router-dom";
 const INITIAL_VALUES = {
   date: "",
   content: "",
-  emotion: "",
+  emotion: 3,
 };
 
-function DiaryEditor(props) {
-  const { onCreate } = useContext(DiaryDispatchContext);
+function DiaryEditor({ originData = INITIAL_VALUES, isEdit }) {
+  const { onCreate, onUpdate, onDelete } = useContext(DiaryDispatchContext);
   const contentRef = useRef();
   const navigate = useNavigate();
 
-  // 1. 날짜, 감정, 텍스트 관리할 상태를 만들어야한다.
-  const [values, setValues] = useState(INITIAL_VALUES);
-  // 2. 각각의 emotionItem을 클릭했을 때 콘솔창에 emotion_id 를 출력해본다.
-  // 3. 1번에서 만든 state의 값이 변경되도록 만든 후 개발자도구의 components 탭에서 확인
+  const [values, setValues] = useState(originData);
   const handleChange = (name, value) => {
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     handleChange(name, value);
   };
-  // 4. 상태 변경 함수(onChange)를 emotionItem의 onClick에 전달
-  // 5. emotionItem_on_${id} 클래스가 적용될 수 있도록 만든다.
-
   const handleSubmit = () => {
-    // trim() 은 앞뒤 공백(space,enter 등)을 모두 지워주는 함수.
     if (values.content.trim().length < 1) {
       handleChange("content", "");
       contentRef.current.focus();
       return;
     }
-    if (window.confirm("새로운 일기를 저장하시겠습니까?")) {
-      onCreate(values);
+    if (
+      window.confirm(
+        isEdit ? "일기를 수정하시겠습니까?" : "새로운 일기를 저장하시겠습니까?"
+      )
+    ) {
+      if (!isEdit) {
+        onCreate(values);
+      } else {
+        onUpdate(values);
+      }
+      navigate("/", { replace: true });
+    }
+  };
+
+  const handleDelete = () => {
+    if (window.confirm("일기를 삭제하시겠습니까?")) {
+      onDelete(values);
     }
     navigate("/", { replace: true });
   };
+
+  useEffect(() => {
+    if (isEdit) {
+      // 받아온 날짜 데이터(밀리세컨즈 단위)를 formatting(yyyy-mm-dd) 해주자.
+      handleChange(
+        "date",
+        new Date(originData.date).toISOString().split("T")[0]
+      );
+    }
+  }, []);
+
   return (
     <div className="diaryEditor">
       <Header
-        headText={"새 일기 작성하기"}
-        leftChild={<Button text={"< 뒤로가기"} />}
+        headText={isEdit ? "일기 수정하기" : "새 일기 작성하기"}
+        leftChild={<Button text={"< 뒤로가기"} onClick={() => navigate(-1)} />}
+        rightChild={
+          isEdit && (
+            <Button
+              text={"삭제하기"}
+              type={"negative"}
+              onClick={handleDelete}
+            />
+          )
+        }
       />
       <div>
         <section>
@@ -82,7 +109,7 @@ function DiaryEditor(props) {
         </section>
         <section>
           <h4>오늘의 일기</h4>
-          <div className="imput_box text_wrapper">
+          <div className="input_box text_wrapper">
             <textarea
               placeholder="오늘 하루는 어땠나요?"
               name="content"
@@ -96,7 +123,7 @@ function DiaryEditor(props) {
           <div className="control_box">
             <Button text={"취소하기"} />
             <Button
-              text={"저장하기"}
+              text={"작성완료"}
               type={"positive"}
               onClick={handleSubmit}
             />
