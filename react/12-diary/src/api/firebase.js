@@ -35,7 +35,7 @@ function getCollection(collectionName) {
   return collection(db, collectionName);
 }
 
-function getUserAuth() {
+export function getUserAuth() {
   return auth;
 }
 
@@ -123,6 +123,6 @@ export async function deleteDatas(collectionName, docId) {
     await deleteDoc(docRef);
     return true;
   } catch (error) {
-    return false;
+    console.log("Error Delete: ", error);
   }
 }

@@ -33,7 +33,7 @@ export function reducer(state, action) {
     case DELETE_ITEM:
       return {
         ...state,
-        items: state.items.filter((item) => item.id !== action.payload),
+        items: state.items.filter((item) => item.docId !== action.payload),
         error: null,
       };
     case SET_ERROR:
@@ -76,10 +76,10 @@ export const updateItem = async (
   }
 };
 export const deleteItem = async (collectionName, docId, dispatch) => {
-  const deleteData = await deleteDatas(collectionName, docId);
-  if (!deleteData) {
+  const resultData = await deleteDatas(collectionName, docId);
+  if (!resultData) {
     dispatch({ type: SET_ERROR, payload: "DELETE Datas 에러!!!" });
   } else {
-    dispatch({ type: DELETE_ITEM, payload: deleteData });
+    dispatch({ type: DELETE_ITEM, payload: docId });
   }
 };

@@ -11,7 +11,7 @@ function DiaryPage(props) {
   // hook, Url 경로에 포함된 파라미터 값을 가져온다.
   const { id } = useParams();
   //   console.log(id);
-  const diaryList = useContext(DiaryStateContext);
+  const { diaryList } = useContext(DiaryStateContext);
   console.log(diaryList);
   const [data, setData] = useState();
   const navigate = useNavigate();

@@ -48,9 +48,9 @@ function DiaryEditor({ originData = INITIAL_VALUES, isEdit }) {
 
   const handleDelete = () => {
     if (window.confirm("일기를 삭제하시겠습니까?")) {
-      onDelete(values);
+      onDelete(originData.docId);
+      navigate("/", { replace: true });
     }
-    navigate("/", { replace: true });
   };
 
   useEffect(() => {
