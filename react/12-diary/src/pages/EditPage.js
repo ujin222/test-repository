@@ -3,11 +3,13 @@ import DiaryEditor from "../components/DiaryEditor";
 import { useNavigate, useParams } from "react-router-dom";
 import { DiaryStateContext } from "../App";
 import { changeTitle } from "../util/changeTitle";
+import { useSelector } from "react-redux";
 
 function EditPage(props) {
   const { id } = useParams();
-  const { diaryList } = useContext(DiaryStateContext);
   const [data, setData] = useState();
+  // const { diaryList } = useContext(DiaryStateContext);
+  const diaryList = useSelector((state) => state.diary.items);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,12 +19,11 @@ function EditPage(props) {
   useEffect(() => {
     if (diaryList.length > 0) {
       const targetDiary = diaryList.find((diary) => diary.id == id);
-      // console.log(targetDiary);
 
       if (targetDiary) {
         setData(targetDiary);
       } else {
-        alert("오류입니다. 다시 시도하세요.");
+        alert("잘못된 접근입니다.");
         navigate("/", { replace: true });
       }
     }
