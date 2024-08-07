@@ -103,14 +103,13 @@ async function addDatas(collectionName, addObj) {
   addObj.createdAt = time;
   addObj.updatedAt = time;
 
-  // 컬렉션에 저장 (확인 버튼 누르면 바로 화면 출력)
+  // 컬렉션에 저장
   const result = await addDoc(getCollection(collectionName), addObj);
   const docSnap = await getDoc(result);
   const resultData = { ...docSnap.data(), docId: docSnap.id };
   return resultData;
 }
 
-// 사진 등록
 async function uploadImage(path, file) {
   const storage = getStorage();
   const imageRef = ref(storage, path);
@@ -123,7 +122,6 @@ async function uploadImage(path, file) {
   return url;
 }
 
-// 마지막 콘텐츠 1개 가져오기
 async function getLastNum(collectionName, field) {
   const q = query(
     getCollection(collectionName), // collection
@@ -135,25 +133,8 @@ async function getLastNum(collectionName, field) {
   return lastId;
 }
 
-// limit에 지정한 숫자만큼만 컨텐츠를 보여줌, 정렬
 async function getDatasOrderByLimit(collectionName, options) {
-  const { fieldName, limits } = options;
-  let q;
-  if (!options.lq) {
-    q = query(
-      getCollection(collectionName),
-      orderBy(fieldName, "desc"),
-      limit(limits)
-    );
-  } else {
-    q = query(
-      getCollection(collectionName),
-      orderBy(fieldName, "desc"),
-      startAfter(options.lq),
-      limit(limits)
-    );
-  }
-
+  const q = getQuery(collectionName, options);
   const snapshot = await getDocs(q);
   const docs = snapshot.docs;
   const lastQuery = docs[docs.length - 1];
@@ -163,54 +144,18 @@ async function getDatasOrderByLimit(collectionName, options) {
   return { resultData, lastQuery };
 }
 
-// 정렬.
-// async function getDatasByOrder(collectionName, options) {
-//   const q = query(
-//     getCollection(collectionName),
-//     orderBy(options.order, "desc")
-//   );
-//   const snapshot = await getDocs(q);
-//   const resultData = snapshot.docs.map((doc) => ({
-//     ...doc.data(),
-//     docId: doc.id,
-//   }));
-//   return resultData;
-// }
-
-// // 삭제 버튼 부분
-// async function deleteDatas(collectionName, docId, imgUrl) {
-//   // 1. 스토리지 객체 가져오기
-//   const storage = getStorage();
-
-//   try {
-//     // 2. 스토리지에서 이미지 삭제
-//     const deleteImg = ref(storage, imgUrl);
-//     await deleteObject(deleteImg);
-
-//     // 3. 컬렉션에서 문서 삭제
-//     const docRef = await doc(db, collectionName, docId);
-//     await deleteDoc(docRef);
-
-//     return true;
-//   } catch (error) {
-//     return false;
-//   }
-// }
-
 async function deleteDatas(collectionName, docId, imgUrl) {
-  // 스토리지에 있는 이미지 삭제할 때 필요한 것 ==> 파일명(경로포함) or 파일url
+  // 스토리이제 있는 이미지를 삭제할 때 필요한 것 ==> 파일명(경로포함) or 파일 url
   // 스토리지 객체 생성
   const storage = getStorage();
   let message;
   try {
-    // 이미지 삭제 부분
     message = "이미지 삭제에 실패했습니다. \n관리자에게 문의하세요.";
     // 삭제할 파일의 참조객체 생성(ref 함수 사용)
     const deleteRef = ref(storage, imgUrl);
     // 파일 삭제
     await deleteObject(deleteRef);
 
-    // 문서 삭제 부분
     message = "문서 삭제에 실패했습니다. \n관리자에게 문의하세요.";
     // 삭제할 문서의 참조객체 생성(doc 함수 사용)
     const deleteDocRef = doc(db, collectionName, docId);
@@ -223,43 +168,42 @@ async function deleteDatas(collectionName, docId, imgUrl) {
   }
 }
 
-// 수정 버튼 부분
-async function updateDatas(collectionName, dataObj, docId) {
+async function updateDatas(collectionName, docId, updateObj, imgUrl) {
   const docRef = await doc(db, collectionName, docId);
-  // 수정할 데이터 양식 => imgUrl, title, calorie, content, updatedAt
-  // updatedAt (작성시간 변경)
+  // 저장되어있는 시간 관련 필드들의 값이 밀리세컨드로 되어있기 때문에 getTime() 함수 사용
   const time = new Date().getTime();
-  dataObj.updatedAt = time;
-  // 사진 수정 (기존 사진 삭제, 새로운 사진 추가, imgUrl 값 변경)
-  if (dataObj.imgUrl !== null) {
-    // 기존 사진 url 가져오기
-    const docSnap = await getDoc(docRef);
-    const prevImgUrl = docSnap.data().imgUrl;
-    // 스토리지에서 기존 사진 삭제
-    const storage = getStorage();
-    const deleteImg = ref(storage, prevImgUrl);
-    await deleteObject(deleteImg);
-    // 새로운 사진 추가
-    // const uuid = crypto.randomUUID();
-    // const path = `foodit/${uuid}`;
-    // const url = await uploadImage(path, dataObj.imgUrl);
-    const url = await uploadImage(createPath("foodit/", dataObj.imgUrl));
-    dataObj.imgUrl = url;
+
+  // 사진 파일을 변경하지 않았을 때
+  if (updateObj.imgUrl === null) {
+    // 사진이 변경되지 않았을 때 imgUrl 값이 null 로 넘어오기 때문에
+    // 그 상태로 문서를 update 해버리면 imgUrl 값이 null 로 바뀐다.
+    // 그렇기 때문에 updateObj 에서 imgUrl 프로퍼티를 삭제해준다.
+    delete updateObj["imgUrl"];
   } else {
-    // imgUrl 프로퍼티 삭제. 이거 삭제 왜 하는데?
-    // 수정 from 에서 imgUrl 기본값을 null 로 넣어줬기 때문에 사진을 수정하지 않고
-    // 그 상태로 문서를 업데이트 하면 imgUrl 값이 null 로 바뀜.
-    delete dataObj["imgUrl"];
-    // ※ 사진 수정 안 하고 다른 것만 수정 했을 경우
+    // 사진 파일을 변경했을 때
+    // 기존 사진 삭제
+    const storage = getStorage();
+    const deleteRef = ref(storage, imgUrl);
+    await deleteObject(deleteRef);
+
+    // 변경한 사진을 스토리지에 저장
+    const url = await uploadImage(createPath("foodit/"), updateObj.imgUrl);
+    // 스토리지에 저장하고 그 파일의 url 을 가져와서 updateObj 의 imgUrl 값을 변경해준다.
+    // 왜? 기존 updateObj에 있는 imgUrl 은 'File' 객체이고,
+    // 우리가 데이터베이스에 저장해야 할 imgUrl 은 문자열 url 이기 때문에
+    updateObj.imgUrl = url;
   }
-  // 문서 부분 수정
-  await updateDoc(docRef, dataObj);
-  const updateItem = await getDoc(docRef);
-  const resultData = { docId: updateItem.id, ...updateItem.data() };
+
+  // updatedAt 필드에 넣어줄 시간 데이터를 updateObj 에 넣어준다.
+  updateObj.updatedAt = time;
+
+  // 문서 필드 데이터 수정
+  await updateDoc(docRef, updateObj);
+  const docSnap = await getDoc(docRef);
+  const resultData = { ...docSnap.data(), docId: docSnap.id };
   return resultData;
 }
 
-// 검색
 async function getSearchDatas(collectionName, options) {
   const q = query(
     getCollection(collectionName),
@@ -269,7 +213,7 @@ async function getSearchDatas(collectionName, options) {
   );
   const snapshot = await getDocs(q);
   const docs = snapshot.docs;
-  const resultData = docs.map((doc) => ({ ...doc.data(), docId: doc.Id }));
+  const resultData = docs.map((doc) => ({ ...doc.data(), docId: doc.id }));
   return resultData;
 }
 
