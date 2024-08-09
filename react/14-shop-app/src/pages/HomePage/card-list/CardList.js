@@ -3,11 +3,12 @@ import styles from "./CardList.module.scss";
 import CardItem from "./card-item/CardItem";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../../store/products/productsSlice";
+import CardSkeleton from "../card-skeleton/CardSkeleton";
 
 function CardList() {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.productsSlice);
-  const category = "Electronics";
+  const { products, isLoading } = useSelector((state) => state.productsSlice);
+  const category = useSelector((state) => state.categoriesSlice);
   useEffect(() => {
     const queryOptions = {
       conditions: [
@@ -18,13 +19,15 @@ function CardList() {
         },
       ],
     };
-    dispatch(fetchProducts({ collectionName: "products", queryOptions }));
+    dispatch(fetchProducts({ collectionName: "shop", queryOptions }));
   }, [category]);
+
+  if (isLoading) return <CardSkeleton />;
 
   return (
     <ul className={styles.card_list}>
       {products.map((product) => {
-        return <CardItem item={product} />;
+        return <CardItem key={product.id} item={product} />;
       })}
     </ul>
   );
