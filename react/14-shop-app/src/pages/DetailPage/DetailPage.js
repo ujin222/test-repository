@@ -29,7 +29,7 @@ function DetailPage() {
           <div className={styles.card_description}>
             <h3>{product.category}</h3>
             <h1>{product.title}</h1>
-            <h4>{product.price}</h4>
+            <h4>$ {product.price}</h4>
             <p>{product.description}</p>
             <div>
               <button>장바구니에 담기</button>

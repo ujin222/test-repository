@@ -9,6 +9,7 @@ function CardList() {
   const dispatch = useDispatch();
   const { products, isLoading } = useSelector((state) => state.productsSlice);
   const category = useSelector((state) => state.categoriesSlice);
+
   useEffect(() => {
     const queryOptions = {
       conditions: [
