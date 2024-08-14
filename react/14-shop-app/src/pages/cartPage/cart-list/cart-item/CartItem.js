@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  calculateTotalAndQuantity,
   decrementProduct,
   deleteCartItem,
   deleteFromCart,
@@ -14,11 +15,32 @@ function CartItem({ image, title, category, price, quantity, total, id }) {
   const dispatch = useDispatch();
   const { uid, isAuthenticated } = useSelector((state) => state.userSlice);
 
+  // 로그인 안 했을때 수량 변경
   const incrementCount = () => {
-    dispatch(incrementProduct(id));
+    if (isAuthenticated) {
+      dispatch(
+        calculateTotalAndQuantity({
+          uid,
+          productId: id,
+          operator: "increment",
+        })
+      );
+    } else {
+      dispatch(incrementProduct(id));
+    }
   };
   const decrementCount = () => {
-    dispatch(decrementProduct(id));
+    if (isAuthenticated) {
+      dispatch(
+        calculateTotalAndQuantity({
+          uid,
+          productId: id,
+          operator: "decrement",
+        })
+      );
+    } else {
+      dispatch(decrementProduct(id));
+    }
   };
 
   const deleteProduct = () => {
@@ -33,6 +55,7 @@ function CartItem({ image, title, category, price, quantity, total, id }) {
       dispatch(deleteFromCart(id));
     }
   };
+
   return (
     <div className={styles.cart_item}>
       <Link>
@@ -47,7 +70,9 @@ function CartItem({ image, title, category, price, quantity, total, id }) {
       </div>
       <div className={styles.cart_count}>
         <div>
-          <button onClick={decrementCount}>-</button>
+          <button disabled={quantity == 1} onClick={decrementCount}>
+            -
+          </button>
           <span>{quantity}</span>
           <button onClick={incrementCount}>+</button>
         </div>

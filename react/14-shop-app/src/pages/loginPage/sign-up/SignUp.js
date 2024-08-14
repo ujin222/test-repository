@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Form from "../../../components/form/Form";
 import { useDispatch } from "react-redux";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { asyncCart, getUserAuth, joinUser } from "../../../api/firebase";
+import { syncCart, getUserAuth, joinUser } from "../../../api/firebase";
 import { setUser } from "../../../store/user/userSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -26,7 +26,7 @@ function SignUp() {
       console.log(cartItems);
 
       await joinUser(user.uid, user.email);
-      await asyncCart(user.uid, cartItems);
+      await syncCart(user.uid, cartItems);
       dispatch(
         setUser({ email: user.email, token: user.refreshToken, uid: user.uid })
       );
